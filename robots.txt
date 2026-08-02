@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theagrolink.vercel.app/sitemap.xml
