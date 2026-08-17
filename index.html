@@ -128,10 +128,15 @@ nav{background:var(--nav-bg);border-bottom:1px solid var(--border);position:stic
 .btn-white:hover{background:var(--g50)}
 .btn-outline-w{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
 .btn-outline-w:hover{background:rgba(255,255,255,.1)}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.stat-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:1.25rem;text-align:center}
-.stat-num{font-family:var(--fd);font-size:2rem;font-weight:700;color:#fff}
-.stat-label{font-size:12px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+.stat-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:1.1rem .5rem;text-align:center}
+.stat-num{font-family:var(--fd);font-size:1.7rem;font-weight:700;color:#fff}
+.stat-label{font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.trust-strip{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:.85rem;padding:.7rem 1.1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:20px}
+.trust-item{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.85);font-size:13px}
+.trust-item b{color:#fff}
+.trust-item-divider{width:1px;height:14px;background:rgba(255,255,255,.25)}
+@media (max-width:520px){.stats-grid{grid-template-columns:repeat(2,1fr)}.trust-strip{flex-direction:column;gap:.5rem;border-radius:var(--r)}}
 
 /* SECTIONS */
 .section{max-width:1100px;margin:0 auto;padding:3rem 2rem}
@@ -144,7 +149,8 @@ nav{background:var(--nav-bg);border-bottom:1px solid var(--border);position:stic
 .feat-desc{font-size:13px;color:var(--muted);line-height:1.6}
 
 /* FILTER & PRODUCTS */
-.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-bar{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.filter-fields{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .filter-bar input,.filter-bar select{padding:8px 14px;border-radius:20px;border:1px solid var(--border2);background:var(--surf);font-family:var(--fb);font-size:14px;color:var(--text);outline:none}
 .filter-bar input:focus,.filter-bar select:focus{border-color:var(--g400)}
 .filter-bar input{flex:1;min-width:200px}
@@ -222,7 +228,8 @@ tr:hover td{background:var(--surf3) !important}
 .upload-box.has-file{border-color:var(--g400);border-style:solid}
 .upload-preview{width:100%;max-height:160px;object-fit:contain;border-radius:var(--rs);margin-top:8px}
 .review-doc-img{width:100%;max-height:280px;object-fit:contain;border-radius:var(--rs);background:var(--e100);cursor:zoom-in}
-.verified-badge-sm{background:var(--g100);color:var(--g800);border-radius:20px;padding:1px 7px;font-size:10px;font-weight:600;display:inline-flex;align-items:center;gap:3px;margin-left:4px}
+.verified-badge-sm{background:linear-gradient(135deg,var(--g400),var(--g600));color:#fff;border-radius:20px;padding:1.5px 8px 1.5px 6px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;gap:3px;margin-left:4px;box-shadow:0 1px 4px rgba(0,150,90,.35)}
+.verified-badge-sm svg{width:11px !important;height:11px !important}
 .review-doc-card{background:var(--surf2);border:1px solid var(--border);border-radius:var(--rs);padding:1rem;margin-bottom:1rem}
 .escrow-txt{font-size:13px;color:var(--g800);line-height:1.5}
 .escrow-txt strong{display:block;font-weight:600;margin-bottom:2px}
@@ -499,6 +506,54 @@ nav.scrolled{box-shadow:0 1px 0 var(--border),0 4px 24px rgba(30,20,10,.1)}
 }
 /* --- Empty state (fetch complete, nothing to show) --- */
 .empty-state{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:14px;background:var(--surf2);border-radius:var(--rs)}
+.empty-state-rich{text-align:center;padding:3rem 1.5rem;color:var(--muted);background:var(--surf2);border-radius:var(--r);border:1px dashed var(--border2)}
+.empty-state-rich .esr-icon{width:52px;height:52px;margin:0 auto 1rem;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;color:var(--g600)}
+.empty-state-rich .esr-title{font-family:var(--fd);font-weight:700;color:var(--text);font-size:1.05rem;margin-bottom:.35rem}
+.empty-state-rich .esr-sub{font-size:13px;margin-bottom:1.1rem;max-width:320px;margin-left:auto;margin-right:auto}
+
+/* --- Skeleton loading cards --- */
+.skel-block{background:linear-gradient(90deg,var(--e100) 25%,var(--e50) 50%,var(--e100) 75%);background-size:400px 100%;animation:shimmer 1.4s infinite linear}
+.prod-card.skel{cursor:default}
+.prod-card.skel .prod-img.skel-block{height:160px}
+.skel-line{height:11px;border-radius:6px;margin-bottom:9px;background:linear-gradient(90deg,var(--e100) 25%,var(--e50) 50%,var(--e100) 75%);background-size:400px 100%;animation:shimmer 1.4s infinite linear}
+.skel-line:last-child{margin-bottom:0}
+
+/* --- Add Product modal: 2-step flow --- */
+.pstep-indicator{display:flex;align-items:center;gap:8px;padding:0 1.5rem 1rem}
+.pstep-dot-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--muted)}
+.pstep-dot{width:26px;height:26px;border-radius:50%;background:var(--surf2);border:1.5px solid var(--border2);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;transition:all .2s}
+.pstep-dot.active{background:var(--g500);border-color:var(--g500);color:#fff}
+.pstep-track{flex:1;height:2px;background:var(--border2);margin-bottom:16px;position:relative}
+.pstep-track-fill{position:absolute;inset:0;width:0;background:var(--g500);transition:width .25s}
+.pstep-panel{display:none}
+.pstep-panel.active{display:block;animation:fadeUp .25s ease both}
+
+/* --- Admin "Needs Attention" summary card --- */
+.needs-attn-card{background:var(--surf);border:1px solid var(--r400);border-radius:var(--r);padding:1.1rem 1.25rem;margin-top:1rem}
+.needs-attn-hdr{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--r400);margin-bottom:.75rem;font-size:14px}
+.needs-attn-list{display:flex;flex-direction:column;gap:6px}
+.needs-attn-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:var(--surf2);border:1px solid var(--border);border-radius:var(--rs);padding:9px 12px;font-family:var(--fb);font-size:13.5px;color:var(--text);cursor:pointer;transition:background .15s}
+.needs-attn-item:hover{background:var(--g50)}
+.needs-attn-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.needs-attn-arrow{margin-left:auto;color:var(--light)}
+
+/* --- Marketplace filter bar / mobile sheet --- */
+.filter-row-top{display:flex;gap:10px}
+.filter-row-top input{flex:1}
+.filter-toggle-btn{display:none;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;border:1px solid var(--border2);background:var(--surf);color:var(--text);font-family:var(--fb);font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer;position:relative}
+.filter-active-dot{width:7px;height:7px;border-radius:50%;background:var(--g500);margin-left:2px}
+.filter-sheet-backdrop{display:none}
+.filter-sheet-hdr{display:none}
+.filter-apply-btn{display:none}
+@media(max-width:780px){
+  .filter-toggle-btn{display:inline-flex}
+  .filter-fields{position:fixed;left:0;right:0;bottom:0;background:var(--surf);border-top:1px solid var(--border);border-radius:16px 16px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.18);padding:1rem 1.25rem calc(1.1rem + env(safe-area-inset-bottom,0));z-index:200;transform:translateY(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);max-height:80vh;overflow-y:auto;flex-direction:column;gap:.65rem}
+  .filter-fields.open{transform:translateY(0)}
+  .filter-fields select,.filter-fields input{width:100%}
+  .filter-sheet-hdr{display:flex;align-items:center;justify-content:space-between;font-family:var(--fd);font-weight:700;font-size:1rem;margin-bottom:.25rem}
+  .filter-sheet-backdrop.open{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199}
+  .filter-apply-btn{display:block;width:100%;margin-top:.25rem}
+}
 
 /* --- Sidebar --- */
 .sb-link{transition:all .18s cubic-bezier(.4,0,.2,1)}
@@ -779,7 +834,12 @@ tr:hover td{background:var(--g50) !important}
 .farmer-meta{display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap}
 .farmer-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
 .farmer-name{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--g800)}
-.verified-badge{background:var(--g100);color:var(--g800);border-radius:20px;padding:2px 10px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.verified-badge{background:linear-gradient(135deg,var(--g400),var(--g600));color:#fff;border-radius:20px;padding:3px 12px 3px 8px;font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,150,90,.35)}
+.verified-badge svg{width:13px !important;height:13px !important}
+.ver-ribbon{position:absolute;top:0;right:14px;background:linear-gradient(135deg,var(--g400),var(--g600));color:#fff;width:26px;padding:5px 0 14px;display:flex;align-items:center;justify-content:center;clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);box-shadow:0 2px 6px rgba(0,0,0,.15);z-index:2}
+@media(max-width:520px){
+  .reg-submit-area{position:sticky;bottom:0;background:var(--surf);margin:1rem -2.5rem -2.5rem;padding:1rem 2.5rem calc(1rem + env(safe-area-inset-bottom,0));box-shadow:0 -6px 16px rgba(0,0,0,.06);border-top:1px solid var(--border)}
+}
 .stars{display:flex;align-items:center;gap:3px}
 .star{font-size:16px;color:#e5e5e5;line-height:1}
 .star.filled{color:#f5a623}
@@ -985,12 +1045,15 @@ tr:hover td{background:var(--g50) !important}
         </div>
       </div>
       <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num" id="statF">0</div><div class="stat-label">Farmers</div></div>
-        <div class="stat-card"><div class="stat-num" id="statP">0</div><div class="stat-label">Products</div></div>
-        <div class="stat-card"><div class="stat-num" id="statO">0</div><div class="stat-label">Orders</div></div>
-        <div class="stat-card"><div class="stat-num" id="statB">0</div><div class="stat-label">Buyers</div></div>
-        <div class="stat-card"><div class="stat-num">99%</div><div class="stat-label">Escrow Safe</div></div>
-        <div class="stat-card"><div class="stat-num">Free</div><div class="stat-label">To Join</div></div>
+        <div class="stat-card"><div class="stat-num" id="statF">–</div><div class="stat-label">Farmers</div></div>
+        <div class="stat-card"><div class="stat-num" id="statP">–</div><div class="stat-label">Products</div></div>
+        <div class="stat-card"><div class="stat-num" id="statO">–</div><div class="stat-label">Orders</div></div>
+        <div class="stat-card"><div class="stat-num" id="statB">–</div><div class="stat-label">Buyers</div></div>
+      </div>
+      <div class="trust-strip">
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg><span><b>99%</b> Escrow Safe</span></div>
+        <div class="trust-item-divider"></div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg><span><b>Free</b> to Join</span></div>
       </div>
     </div>
   </div>
@@ -1031,30 +1094,56 @@ tr:hover td{background:var(--g50) !important}
     <div class="sec-title">Marketplace</div>
     <div class="sec-sub">Browse fresh produce directly from verified farmers</div>
     <div class="filter-bar">
-      <input type="text" id="srch" placeholder="Search products, farmers..." oninput="filterProds()"/>
-      <select onchange="filterProds()" id="catF">
-        <option value="">All Categories</option>
-        <option>Grains & Cereals</option><option>Vegetables</option><option>Fruits</option>
-        <option>Tubers</option><option>Legumes</option><option>Livestock</option>
-      </select>
-      <select onchange="filterProds()" id="stateF">
-        <option value="">All States</option>
-        <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
-        <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
-        <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
-        <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option>
-        <option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option>
-        <option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option>
-        <option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option>
-        <option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option>
-        <option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option>
-        <option>Zamfara</option>
-      </select>
-      <input type="number" id="minPriceF" placeholder="Min ₦" min="0" oninput="filterProds()" style="flex:0 0 110px;min-width:0"/>
-      <input type="number" id="maxPriceF" placeholder="Max ₦" min="0" oninput="filterProds()" style="flex:0 0 110px;min-width:0"/>
-      <button class="btn btn-ghost btn-sm" onclick="clearFilters()" type="button">Clear filters</button>
+      <div class="filter-row-top">
+        <input type="text" id="srch" placeholder="Search products, farmers..." oninput="filterProds()"/>
+        <button class="filter-toggle-btn" type="button" onclick="toggleFilterSheet(true)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;flex-shrink:0"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          Filters<span id="filterActiveDot" class="filter-active-dot" style="display:none"></span>
+        </button>
+      </div>
+      <div class="filter-sheet-backdrop" id="filterBackdrop" onclick="toggleFilterSheet(false)"></div>
+      <div class="filter-fields" id="filterFields">
+        <div class="filter-sheet-hdr">
+          <span>Filters</span>
+          <button class="modal-x" type="button" onclick="toggleFilterSheet(false)">✕</button>
+        </div>
+        <select onchange="filterProds()" id="catF">
+          <option value="">All Categories</option>
+          <option>Grains & Cereals</option><option>Vegetables</option><option>Fruits</option>
+          <option>Tubers</option><option>Legumes</option><option>Livestock</option>
+        </select>
+        <select onchange="filterProds()" id="stateF">
+          <option value="">All States</option>
+          <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
+          <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
+          <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
+          <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option>
+          <option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option>
+          <option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+          <option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option>
+          <option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option>
+          <option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option>
+          <option>Zamfara</option>
+        </select>
+        <input type="number" id="minPriceF" placeholder="Min ₦" min="0" oninput="filterProds()" style="flex:0 0 110px;min-width:0"/>
+        <input type="number" id="maxPriceF" placeholder="Max ₦" min="0" oninput="filterProds()" style="flex:0 0 110px;min-width:0"/>
+        <select onchange="filterProds()" id="sortF">
+          <option value="new">Newest first</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" onclick="clearFilters()" type="button">Clear filters</button>
+        <button class="btn btn-sm filter-apply-btn" onclick="toggleFilterSheet(false)" type="button">Show Results</button>
+      </div>
     </div>
-    <div class="prod-grid" id="prodGrid"><div class="loading">Loading products...</div></div>
+    <div class="prod-grid" id="prodGrid">
+      <div class="prod-card skel"><div class="prod-img skel-block"></div><div class="prod-body"><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:60%"></div></div></div>
+      <div class="prod-card skel"><div class="prod-img skel-block"></div><div class="prod-body"><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:60%"></div></div></div>
+      <div class="prod-card skel"><div class="prod-img skel-block"></div><div class="prod-body"><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:60%"></div></div></div>
+      <div class="prod-card skel"><div class="prod-img skel-block"></div><div class="prod-body"><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:60%"></div></div></div>
+      <div class="prod-card skel"><div class="prod-img skel-block"></div><div class="prod-body"><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:60%"></div></div></div>
+      <div class="prod-card skel"><div class="prod-img skel-block"></div><div class="prod-body"><div class="skel-line" style="width:70%"></div><div class="skel-line" style="width:45%"></div><div class="skel-line" style="width:90%"></div><div class="skel-line" style="width:60%"></div></div></div>
+    </div>
   </div>
 </div>
 
@@ -1069,12 +1158,14 @@ tr:hover td{background:var(--g50) !important}
           <div style="font-size:12px;color:var(--light)" id="sbRole"></div>
         </div>
       </div>
-      <div class="sb-title">Menu</div>
+      <div class="sb-title">Overview</div>
       <button class="sb-link active" id="sl-ov" onclick="showDash('ov')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M4 20V10M12 20V4M20 20v-7"/></svg> Overview</button>
+      <div class="sb-title" style="margin-top:1rem">Selling</div>
       <button class="sb-link" id="sl-lst" onclick="showDash('lst')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M12 20v-8"/><path d="M12 12c0-4 3-6 6-6 0 4-2 7-6 6Z"/><path d="M12 12c0-3-2-5-5-5 0 3 1 6 5 5Z"/></svg> My Listings</button>
       <button class="sb-link" id="sl-ord" onclick="showDash('ord')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M21 8l-9-5-9 5 9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg> My Orders</button>
       <button class="sb-link" id="sl-earn" onclick="showDash('earn')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16" cy="14" r="1"/></svg> Earnings</button>
       <button class="sb-link" id="sl-wd" onclick="showDash('wd')" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Withdraw</button>
+      <div class="sb-title" style="margin-top:1rem">Support</div>
       <button class="sb-link" id="sl-msg" onclick="showDash('msg')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Messages <span id="msgTabDot" style="display:none;width:7px;height:7px;border-radius:50%;background:var(--a400);margin-left:4px"></span></button>
       <button class="sb-link" id="sl-verify" onclick="showDash('verify')" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg> Verification <span id="verifyTabDot" style="display:none;width:7px;height:7px;border-radius:50%;background:var(--a400);margin-left:4px"></span></button>
       <div class="sb-title" style="margin-top:1rem">Account</div>
@@ -1182,6 +1273,10 @@ tr:hover td{background:var(--g50) !important}
           <div class="met"><div class="met-label">Products</div><div class="met-val" id="admP">...</div></div>
           <div class="met"><div class="met-label">Orders</div><div class="met-val" id="admO">...</div></div>
           <div class="met"><div class="met-label">Revenue</div><div class="met-val" id="admR">...</div></div>
+        </div>
+        <div class="needs-attn-card" id="needsAttentionCard" style="display:none">
+          <div class="needs-attn-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M12 9v4"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg> Needs Attention</div>
+          <div class="needs-attn-list" id="needsAttentionList"></div>
         </div>
         <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-top:1rem">
           <div style="font-weight:600;margin-bottom:.75rem">Transaction Volume (Last 7 Days)</div>
@@ -1543,8 +1638,10 @@ tr:hover td{background:var(--g50) !important}
       <div class="fg"><label class="fl">Password</label><div style="position:relative"><input class="fc" style="padding-right:42px" type="password" id="regPass" placeholder="Min. 8 chars, 1 uppercase, 1 number" oninput="checkPwStrength(this.value)"/><button type="button" onclick="togglePw('regPass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);display:flex;padding:4px" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
         <div id="pwStrength" style="margin-top:6px;font-size:12px;height:16px"></div>
       </div>
-      <p style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:.75rem;line-height:1.5">By creating an account, you agree to AgroLink's <span class="link" onclick="go('terms')">Terms of Service</span> and <span class="link" onclick="go('privacy')">Privacy Policy</span>.</p>
-      <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--rs);padding:12px" onclick="register()" id="regBtn">Create Account</button>
+      <div class="reg-submit-area">
+        <p style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:.75rem;line-height:1.5">By creating an account, you agree to AgroLink's <span class="link" onclick="go('terms')">Terms of Service</span> and <span class="link" onclick="go('privacy')">Privacy Policy</span>.</p>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--rs);padding:12px" onclick="register()" id="regBtn">Create Account</button>
+      </div>
       <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:1rem">Have an account? <span class="link" onclick="go('login')">Sign in</span></p>
     </div>
   </div>
@@ -1628,57 +1725,70 @@ tr:hover td{background:var(--g50) !important}
 <div class="modal-bg" id="addMod">
   <div class="modal">
     <div class="modal-hdr"><span class="modal-title">Add Product Listing</span><button class="modal-close" onclick="closeModal('addMod')">✕</button></div>
+    <div class="pstep-indicator">
+      <div class="pstep-dot-wrap"><div class="pstep-dot active" id="pdot1">1</div><span>Basics</span></div>
+      <div class="pstep-track"><div class="pstep-track-fill" id="pstepFill"></div></div>
+      <div class="pstep-dot-wrap"><div class="pstep-dot" id="pdot2">2</div><span>Details</span></div>
+    </div>
     <div class="modal-body">
       <div class="err-msg" id="prodErr"></div>
-      <div class="fg"><label class="fl">Product Name</label><input class="fc" id="prodName" placeholder="e.g. Fresh Tomatoes, Grade A Maize..."/></div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Category</label>
-          <select class="fc" id="prodCat"><option>Grains & Cereals</option><option>Vegetables</option><option>Fruits</option><option>Tubers</option><option>Legumes</option><option>Livestock</option></select>
-        </div>
-        <div class="fg"><label class="fl">Unit</label>
-          <select class="fc" id="prodUnit"><option>kg</option><option>bag</option><option>tuber</option><option>crate</option><option>bunch</option><option>litre</option></select>
-        </div>
-      </div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Price per unit (₦)</label><input class="fc" type="number" id="prodPrice" placeholder="500"/></div>
-        <div class="fg"><label class="fl">Quantity</label><input class="fc" type="number" id="prodQty" placeholder="200"/></div>
-      </div>
-      <div class="fg"><label class="fl">Description</label><textarea class="fc" id="prodDesc" rows="3" placeholder="Quality, harvest date, etc."></textarea></div>
-      <div class="fg"><label class="fl">State</label>
-        <select class="fc" id="prodState">
-          <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
-          <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
-          <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
-          <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option>
-          <option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option>
-          <option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option>
-          <option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option>
-          <option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option>
-          <option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option>
-          <option>Zamfara</option>
-        </select>
-      </div>
-      <div class="fg"><label class="fl">LGA / City</label><input class="fc" id="prodLGA" placeholder="e.g. Gboko, Ikeja..."/></div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Harvest Date</label><input class="fc" type="date" id="prodHarvest"/></div>
-        <div class="fg"><label class="fl">Delivery?</label>
-          <select class="fc" id="prodDel"><option>Yes — I can deliver</option><option>No — Buyer picks up</option><option>Negotiable</option></select>
-        </div>
-      </div>
-      <div class="fg">
-        <label class="fl">Product Photo (optional)</label>
-        <div class="img-upload-area" id="imgUploadArea" onclick="document.getElementById('prodImg').click()">
-          <input type="file" id="prodImg" accept="image/*" style="display:none" onchange="previewImg(this)"/>
-          <div id="imgPreview" class="img-preview-placeholder">
-            <span style="font-size:2rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M4 8h3l2-2h6l2 2h3v11H4V8Z"/><circle cx="12" cy="13.5" r="3"/></svg></span>
-            <span style="font-size:13px;color:var(--muted)">Click to upload photo</span>
-            <span style="font-size:11px;color:var(--light)">JPG, PNG — max 5MB</span>
+      <div class="pstep-panel active" id="pstep1">
+        <div class="fg"><label class="fl">Product Name</label><input class="fc" id="prodName" placeholder="e.g. Fresh Tomatoes, Grade A Maize..."/></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">Category</label>
+            <select class="fc" id="prodCat"><option>Grains & Cereals</option><option>Vegetables</option><option>Fruits</option><option>Tubers</option><option>Legumes</option><option>Livestock</option></select>
+          </div>
+          <div class="fg"><label class="fl">Unit</label>
+            <select class="fc" id="prodUnit"><option>kg</option><option>bag</option><option>tuber</option><option>crate</option><option>bunch</option><option>litre</option></select>
           </div>
         </div>
+        <div class="frow">
+          <div class="fg"><label class="fl">Price per unit (₦)</label><input class="fc" type="number" id="prodPrice" placeholder="500"/></div>
+          <div class="fg"><label class="fl">Quantity</label><input class="fc" type="number" id="prodQty" placeholder="200"/></div>
+        </div>
+        <div class="mfoot">
+          <button class="btn btn-ghost" onclick="closeModal('addMod')">Cancel</button>
+          <button class="btn btn-primary" onclick="goPstep(2)" type="button">Next: Details →</button>
+        </div>
       </div>
-      <div class="mfoot">
-        <button class="btn btn-ghost" onclick="closeModal('addMod')">Cancel</button>
-        <button class="btn btn-primary" onclick="addProduct()" id="addProdBtn">Publish Listing</button>
+      <div class="pstep-panel" id="pstep2">
+        <div class="fg"><label class="fl">Description</label><textarea class="fc" id="prodDesc" rows="3" placeholder="Quality, harvest date, etc."></textarea></div>
+        <div class="fg"><label class="fl">State</label>
+          <select class="fc" id="prodState">
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
+            <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
+            <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
+            <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option>
+            <option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option>
+            <option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+            <option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option>
+            <option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option>
+            <option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option>
+            <option>Zamfara</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">LGA / City</label><input class="fc" id="prodLGA" placeholder="e.g. Gboko, Ikeja..."/></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">Harvest Date</label><input class="fc" type="date" id="prodHarvest"/></div>
+          <div class="fg"><label class="fl">Delivery?</label>
+            <select class="fc" id="prodDel"><option>Yes — I can deliver</option><option>No — Buyer picks up</option><option>Negotiable</option></select>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Product Photo (optional)</label>
+          <div class="img-upload-area" id="imgUploadArea" onclick="document.getElementById('prodImg').click()">
+            <input type="file" id="prodImg" accept="image/*" style="display:none" onchange="previewImg(this)"/>
+            <div id="imgPreview" class="img-preview-placeholder">
+              <span style="font-size:2rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M4 8h3l2-2h6l2 2h3v11H4V8Z"/><circle cx="12" cy="13.5" r="3"/></svg></span>
+              <span style="font-size:13px;color:var(--muted)">Click to upload photo</span>
+              <span style="font-size:11px;color:var(--light)">JPG, PNG — max 5MB</span>
+            </div>
+          </div>
+        </div>
+        <div class="mfoot">
+          <button class="btn btn-ghost" onclick="goPstep(1)" type="button">← Back</button>
+          <button class="btn btn-primary" onclick="addProduct()" id="addProdBtn">Publish Listing</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1688,42 +1798,55 @@ tr:hover td{background:var(--g50) !important}
 <div class="modal-bg" id="editProdMod">
   <div class="modal">
     <div class="modal-hdr"><span class="modal-title">Edit Listing</span><button class="modal-close" onclick="closeModal('editProdMod')">✕</button></div>
+    <div class="pstep-indicator">
+      <div class="pstep-dot-wrap"><div class="pstep-dot active" id="epdot1">1</div><span>Basics</span></div>
+      <div class="pstep-track"><div class="pstep-track-fill" id="epstepFill"></div></div>
+      <div class="pstep-dot-wrap"><div class="pstep-dot" id="epdot2">2</div><span>Details</span></div>
+    </div>
     <div class="modal-body">
       <div class="err-msg" id="editProdErr"></div>
       <input type="hidden" id="editProdId"/>
       <input type="hidden" id="editProdOrigQty"/>
-      <div class="fg"><label class="fl">Product Name</label><input class="fc" id="editProdName" placeholder="e.g. Fresh Tomatoes, Grade A Maize..."/></div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Category</label>
-          <select class="fc" id="editProdCat"><option>Grains & Cereals</option><option>Vegetables</option><option>Fruits</option><option>Tubers</option><option>Legumes</option><option>Livestock</option></select>
+      <div class="pstep-panel active" id="epstep1">
+        <div class="fg"><label class="fl">Product Name</label><input class="fc" id="editProdName" placeholder="e.g. Fresh Tomatoes, Grade A Maize..."/></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">Category</label>
+            <select class="fc" id="editProdCat"><option>Grains & Cereals</option><option>Vegetables</option><option>Fruits</option><option>Tubers</option><option>Legumes</option><option>Livestock</option></select>
+          </div>
+          <div class="fg"><label class="fl">Unit</label>
+            <select class="fc" id="editProdUnit"><option>kg</option><option>bag</option><option>tuber</option><option>crate</option><option>bunch</option><option>litre</option></select>
+          </div>
         </div>
-        <div class="fg"><label class="fl">Unit</label>
-          <select class="fc" id="editProdUnit"><option>kg</option><option>bag</option><option>tuber</option><option>crate</option><option>bunch</option><option>litre</option></select>
+        <div class="frow">
+          <div class="fg"><label class="fl">Price per unit (₦)</label><input class="fc" type="number" id="editProdPrice" placeholder="500"/></div>
+          <div class="fg"><label class="fl">Quantity</label><input class="fc" type="number" id="editProdQty" placeholder="200"/></div>
+        </div>
+        <div class="mfoot">
+          <button class="btn btn-ghost" onclick="closeModal('editProdMod')">Cancel</button>
+          <button class="btn btn-primary" onclick="goEpstep(2)" type="button">Next: Details →</button>
         </div>
       </div>
-      <div class="frow">
-        <div class="fg"><label class="fl">Price per unit (₦)</label><input class="fc" type="number" id="editProdPrice" placeholder="500"/></div>
-        <div class="fg"><label class="fl">Quantity</label><input class="fc" type="number" id="editProdQty" placeholder="200"/></div>
-      </div>
-      <div class="fg"><label class="fl">Description</label><textarea class="fc" id="editProdDesc" rows="3" placeholder="Quality, harvest date, etc."></textarea></div>
-      <div class="fg"><label class="fl">State</label>
-        <select class="fc" id="editProdState">
-          <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
-          <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
-          <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
-          <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option>
-          <option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option>
-          <option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option>
-          <option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option>
-          <option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option>
-          <option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option>
-          <option>Zamfara</option>
-        </select>
-      </div>
-      <p style="font-size:12px;color:var(--muted);margin-top:-.25rem;margin-bottom:1rem">To change the photo, use the small photo icon next to the listing in your table instead — this form only edits the details above.</p>
-      <div class="mfoot">
-        <button class="btn btn-ghost" onclick="closeModal('editProdMod')">Cancel</button>
-        <button class="btn btn-primary" onclick="saveProductEdit()" id="editProdBtn">Save Changes</button>
+      <div class="pstep-panel" id="epstep2">
+        <div class="fg"><label class="fl">Description</label><textarea class="fc" id="editProdDesc" rows="3" placeholder="Quality, harvest date, etc."></textarea></div>
+        <div class="fg"><label class="fl">State</label>
+          <select class="fc" id="editProdState">
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option>
+            <option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option>
+            <option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option>
+            <option>Ekiti</option><option>Enugu</option><option>FCT Abuja</option><option>Gombe</option>
+            <option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option>
+            <option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+            <option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option>
+            <option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option>
+            <option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option>
+            <option>Zamfara</option>
+          </select>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:-.25rem;margin-bottom:1rem">To change the photo, use the small photo icon next to the listing in your table instead — this form only edits the details above.</p>
+        <div class="mfoot">
+          <button class="btn btn-ghost" onclick="goEpstep(1)" type="button">← Back</button>
+          <button class="btn btn-primary" onclick="saveProductEdit()" id="editProdBtn">Save Changes</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2634,7 +2757,7 @@ function getProdImg(p){
 }
 function renderProds(list){
   const g=document.getElementById('prodGrid');
-  if(!list||!list.length){g.innerHTML='<div class="empty">No products found. <span class="link" onclick="go(\'register\')">Be the first to list!</span></div>';return;}
+  if(!list||!list.length){g.innerHTML=`<div class="empty-state-rich" style="grid-column:1/-1"><div class="esr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></div><div class="esr-title">No products match your filters</div><div class="esr-sub">Try clearing a filter, or be the first to list fresh produce in this category.</div><button class="btn btn-sm" onclick="clearFilters()">Clear filters</button></div>`;return;}
   g.innerHTML=list.map((p,i)=>{
     const isDemo=p.id&&p.id.startsWith('demo-');
     const demoBadge=isDemo?'<span style="position:absolute;top:8px;left:8px;background:var(--a400);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.5px">DEMO</span>':'';
@@ -2642,9 +2765,10 @@ function renderProds(list){
     const cartClick=isDemo?`onclick="event.stopPropagation();toast('Demo product — sign in to order!',true)"`:`onclick="event.stopPropagation();addToCart('${p.id}')"`;
     const isVerified=p.profiles?.verification_status==='approved';
     const verBadge=isVerified?'<span class="verified-badge-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>':'';
+    const verRibbon=isVerified?'<span class="ver-ribbon" title="Verified Farmer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span>':'';
     return `
     <div class="prod-card" onclick="openOrd('${p.id}')" style="animation:fadeUp .4s ${i*0.05}s ease both;opacity:0">
-      <div class="prod-img" style="position:relative">${getProdImg(p)}${demoBadge}</div>
+      <div class="prod-img" style="position:relative">${getProdImg(p)}${demoBadge}${verRibbon}</div>
       <div class="prod-body">
         <div class="prod-name">${p.name}</div>
         <div class="prod-farmer" style="cursor:${isDemo?'default':'pointer'}" ${farmerClick}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/></svg> ${p.profiles?.full_name||'Farmer'}${verBadge}${!isDemo?' <span style="font-size:10px;color:var(--g600)">View Profile →</span>':''}</div>
@@ -2668,7 +2792,8 @@ function filterProds(){
   const maxPriceRaw=document.getElementById('maxPriceF').value;
   const minPrice=minPriceRaw===''?null:Number(minPriceRaw);
   const maxPrice=maxPriceRaw===''?null:Number(maxPriceRaw);
-  renderProds(allProds.filter(p=>{
+  const sort=document.getElementById('sortF')?document.getElementById('sortF').value:'new';
+  let filtered=allProds.filter(p=>{
     const ms=!s||p.name.toLowerCase().includes(s)||(p.profiles?.full_name||'').toLowerCase().includes(s);
     const mc=!cat||p.category===cat;
     const mst=!state||(p.profiles?.state||p.state)===state;
@@ -2676,7 +2801,12 @@ function filterProds(){
     const mMin=minPrice===null||isNaN(minPrice)||price>=minPrice;
     const mMax=maxPrice===null||isNaN(maxPrice)||price<=maxPrice;
     return ms&&mc&&mst&&mMin&&mMax;
-  }));
+  });
+  if(sort==='priceLow')filtered=[...filtered].sort((a,b)=>Number(a.price)-Number(b.price));
+  else if(sort==='priceHigh')filtered=[...filtered].sort((a,b)=>Number(b.price)-Number(a.price));
+  renderProds(filtered);
+  const dot=document.getElementById('filterActiveDot');
+  if(dot)dot.style.display=(cat||state||minPrice!==null||maxPrice!==null||sort!=='new')?'inline-block':'none';
 }
 
 function clearFilters(){
@@ -2685,7 +2815,15 @@ function clearFilters(){
   document.getElementById('stateF').value='';
   document.getElementById('minPriceF').value='';
   document.getElementById('maxPriceF').value='';
+  if(document.getElementById('sortF'))document.getElementById('sortF').value='new';
   filterProds();
+}
+
+function toggleFilterSheet(open){
+  const f=document.getElementById('filterFields'),b=document.getElementById('filterBackdrop');
+  if(!f)return;
+  f.classList.toggle('open',open);
+  if(b)b.classList.toggle('open',open);
 }
 
 // ── ORDER ──
@@ -2758,7 +2896,18 @@ async function placeOrder(){
 // stuck disabled the next time this modal opens.
 function openAddProductModal(){
   const btn=document.getElementById('addProdBtn');btn.textContent='Publish Listing';btn.disabled=false;
+  goPstep(1);
   openModal('addMod');
+}
+
+// Switches the Add Product modal between its two steps (Basics / Details)
+function goPstep(n){
+  document.getElementById('pstep1').classList.toggle('active',n===1);
+  document.getElementById('pstep2').classList.toggle('active',n===2);
+  document.getElementById('pdot1').classList.toggle('active',true);
+  document.getElementById('pdot2').classList.toggle('active',n===2);
+  document.getElementById('pstepFill').style.width=n===2?'100%':'0%';
+  document.getElementById('addMod').querySelector('.modal-body').scrollTop=0;
 }
 
 async function addProduct(){
@@ -2873,7 +3022,18 @@ async function openEditProduct(id){
   const errEl=document.getElementById('editProdErr');
   errEl.textContent='';errEl.classList.remove('show');
   const editBtn=document.getElementById('editProdBtn');editBtn.textContent='Save Changes';editBtn.disabled=false;
+  goEpstep(1);
   openModal('editProdMod');
+}
+
+// Switches the Edit Listing modal between its two steps (Basics / Details)
+function goEpstep(n){
+  document.getElementById('epstep1').classList.toggle('active',n===1);
+  document.getElementById('epstep2').classList.toggle('active',n===2);
+  document.getElementById('epdot1').classList.toggle('active',true);
+  document.getElementById('epdot2').classList.toggle('active',n===2);
+  document.getElementById('epstepFill').style.width=n===2?'100%':'0%';
+  document.getElementById('editProdMod').querySelector('.modal-body').scrollTop=0;
 }
 
 async function saveProductEdit(){
@@ -4815,7 +4975,7 @@ function renderCartBody(){
   const body=document.getElementById('cartBody');
   const foot=document.getElementById('cartFoot');
   if(!cart.length){
-    body.innerHTML=`<div class="cart-empty"><div class="cart-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/></svg></div><div style="font-weight:600;margin-bottom:.4rem">Your cart is empty</div><div style="font-size:13px">Add products from the marketplace</div></div>`;
+    body.innerHTML=`<div class="cart-empty"><div class="cart-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/></svg></div><div style="font-weight:600;margin-bottom:.4rem">Your cart is empty</div><div style="font-size:13px;margin-bottom:1rem">Browse fresh produce from verified farmers across Nigeria</div><button class="btn btn-sm" onclick="closeCart();go('market');act('nm')">Browse Marketplace</button></div>`;
     if(foot)foot.style.display='none';
     return;
   }
@@ -5202,12 +5362,36 @@ Monitor.log=function(...args){
 // Shows a dot on the admin "More" button if anything inside its sheet (Withdraw/Errors) needs attention
 function refreshAdminMoreDot(){
   const dot=document.getElementById('mbnaMoreDot');
-  if(!dot)return;
-  const wdOn=document.getElementById('admWdBadgeMob')?.style.display==='block';
-  const errOn=document.getElementById('errBadgeMob')?.style.display==='block';
-  const dispOn=document.getElementById('admDispBadgeMob')?.style.display==='block';
-  const msgOn=document.getElementById('admMsgBadgeMob')?.style.display==='block';
-  dot.style.display=(wdOn||errOn||dispOn||msgOn)?'block':'none';
+  if(dot){
+    const wdOn=document.getElementById('admWdBadgeMob')?.style.display==='block';
+    const errOn=document.getElementById('errBadgeMob')?.style.display==='block';
+    const dispOn=document.getElementById('admDispBadgeMob')?.style.display==='block';
+    const msgOn=document.getElementById('admMsgBadgeMob')?.style.display==='block';
+    dot.style.display=(wdOn||errOn||dispOn||msgOn)?'block':'none';
+  }
+  updateNeedsAttention();
+}
+
+// Builds the "Needs Attention" summary card on the admin Analytics overview
+// by reading the current state of each section's badge count.
+function updateNeedsAttention(){
+  const card=document.getElementById('needsAttentionCard');
+  const list=document.getElementById('needsAttentionList');
+  if(!card||!list)return;
+  const items=[
+    {id:'admDispBadge',label:'dispute(s) need review',tab:'disp',color:'var(--r400)'},
+    {id:'admMsgBadge',label:'unread contact message(s)',tab:'msg',color:'var(--r400)'},
+    {id:'admVerBadge',label:'farmer verification(s) pending',tab:'ver',color:'var(--a400)'},
+    {id:'admWdBadge',label:'withdrawal request(s) pending',tab:'wd',color:'var(--a400)'},
+    {id:'errBadge',label:'error(s) logged this session',tab:'err',color:'var(--r400)'},
+  ].map(i=>{
+    const el=document.getElementById(i.id);
+    const n=el&&el.style.display!=='none'?parseInt(el.textContent)||0:0;
+    return {...i,n};
+  }).filter(i=>i.n>0);
+  if(!items.length){card.style.display='none';return;}
+  card.style.display='block';
+  list.innerHTML=items.map(i=>`<button class="needs-attn-item" onclick="showAdmin('${i.tab}')${i.tab==='err'?';renderErrorLog()':''}"><span class="needs-attn-dot" style="background:${i.color}"></span><b>${i.n}</b> ${i.label}<span class="needs-attn-arrow">→</span></button>`).join('');
 }
 
 // ── ONLINE / OFFLINE ALERTS ──
