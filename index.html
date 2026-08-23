@@ -31,7 +31,26 @@
   "name": "AgroLink",
   "url": "https://theagrolink.vercel.app/",
   "logo": "https://theagrolink.vercel.app/icons/icon-512.png",
-  "description": "AgroLink connects farmers directly with buyers across Nigeria — no middlemen, secure escrow payments."
+  "description": "AgroLink connects farmers directly with buyers across Nigeria — no middlemen, secure escrow payments.",
+  "founder": {
+    "@type": "Person",
+    "name": "Taiwo Olamilekan Joseph"
+  }
+}
+</script>
+
+<!-- Structured data: ties the creator's name to this site for personal name search -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Taiwo Olamilekan Joseph",
+  "url": "https://theagrolink.vercel.app/",
+  "sameAs": [
+    "https://github.com/Lekan223"
+  ],
+  "jobTitle": "Computer Science Student",
+  "description": "Creator and developer of AgroLink, a direct-to-market agricultural platform for farmers and buyers in Nigeria."
 }
 </script>
 
@@ -885,6 +904,23 @@ tr:hover td{background:var(--g50) !important}
 .add-to-cart-btn{display:flex;align-items:center;gap:6px;width:100%;padding:9px 14px;border-radius:var(--rs);background:var(--g50);color:var(--g800);border:1.5px solid var(--g100);font-family:var(--fb);font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;justify-content:center;margin-top:8px}
 .add-to-cart-btn:hover{background:var(--g400);color:#fff;border-color:var(--g400);transform:translateY(-1px)}
 .add-to-cart-btn.added{background:var(--g400);color:#fff;border-color:var(--g400)}
+
+/* ══ UI REFINEMENT ══ */
+:root{--r:18px;--rs:12px;--shadow:0 12px 34px rgba(7,25,30,.09)}
+body{background:linear-gradient(180deg,#f8fcfb 0,#f2f8f6 100%);letter-spacing:-.01em}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(rgba(7,25,30,.045) .6px,transparent .6px);background-size:18px 18px;mask-image:linear-gradient(to bottom,black,transparent 65%)}
+[data-theme="dark"] body{background:linear-gradient(180deg,#07191e,#0a2028)}
+nav{height:74px;padding-left:max(2rem,calc((100vw - 1240px)/2));padding-right:max(2rem,calc((100vw - 1240px)/2));background:color-mix(in srgb,var(--nav-bg) 88%,transparent);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#04f3a2,#00b879);box-shadow:0 6px 16px rgba(2,245,161,.28)}
+.brandname{font-size:1.35rem;letter-spacing:-.04em}.navlinks{gap:.45rem}.navlinks a{padding:8px 14px}.navlinks a.active{background:var(--g50);border-color:transparent}.btn{border-radius:12px;padding:10px 17px;font-weight:600}.btn-primary{box-shadow:0 7px 16px rgba(2,245,161,.18)}.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,245,161,.28)}
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:590px;padding:5.5rem 2rem;background:radial-gradient(circle at 84% 20%,rgba(2,245,161,.2),transparent 25%),radial-gradient(circle at 58% 100%,#154852 0,transparent 37%),linear-gradient(125deg,#06171c 0%,#092c35 55%,#0a3e42 100%)}
+.hero::before,.hero::after{content:'';position:absolute;border:1px solid rgba(255,255,255,.11);border-radius:50%;pointer-events:none;z-index:-1}.hero::before{width:560px;height:560px;right:-160px;top:-190px}.hero::after{width:300px;height:300px;right:15%;bottom:-225px}
+.hero-inner{max-width:1180px;gap:5rem}.hero h1{font-size:clamp(3rem,5vw,4.65rem);letter-spacing:-.055em;max-width:660px;margin-bottom:1.25rem}.hero p{font-size:1.1rem;line-height:1.75;max-width:550px}.hero-btns{margin-top:2.2rem}.hero .btn{padding:12px 20px}.btn-white{border-radius:12px}.hero-copy-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);color:#d9fff0;font-size:11px;font-weight:700;letter-spacing:.11em;padding:7px 11px;border-radius:999px;margin-bottom:1.25rem}.hero-copy-kicker::before{content:'';width:7px;height:7px;background:var(--g400);border-radius:50%;box-shadow:0 0 0 4px rgba(2,245,161,.15)}
+.hero-data{position:relative;padding:1.25rem}.hero-data::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:28px;transform:rotate(3deg);z-index:-1}.stats-grid{gap:12px}.stat-card{min-height:132px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.07));border-radius:16px;backdrop-filter:blur(8px);transition:transform .2s,background .2s}.stat-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.18)}.stat-num{font-size:2rem}.trust-strip{margin-top:14px;border-radius:14px;justify-content:flex-start;padding:13px 16px;background:rgba(3,17,22,.38);backdrop-filter:blur(8px)}
+.section{max-width:1180px;padding:5rem 2rem}.sec-title{font-size:clamp(2rem,3vw,2.7rem);letter-spacing:-.045em}.sec-sub{font-size:1rem;max-width:650px}.feat-grid{gap:1rem}.feat-card{border-radius:16px;padding:1.5rem;box-shadow:0 1px 0 rgba(255,255,255,.8) inset;transition:transform .2s,box-shadow .2s}.feat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.feat-icon{border-radius:13px;background:linear-gradient(145deg,var(--g50),#c8ffeb);color:var(--g800)}
+.filter-bar{padding:1rem;background:var(--surf);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 22px rgba(7,25,30,.04)}.filter-bar input,.filter-bar select{border-radius:10px;padding:10px 13px}.prod-card{border-radius:16px;box-shadow:0 2px 8px rgba(7,25,30,.035)}.prod-img{height:180px;background:linear-gradient(145deg,var(--g50),#d7f8e9)}.prod-body{padding:1.15rem}.prod-price{font-size:1.35rem}.add-to-cart-btn{border-radius:10px}
+.dash-main{padding:2.5rem;background:transparent}.sidebar{background:color-mix(in srgb,var(--surf) 88%,transparent);backdrop-filter:blur(12px)}.sb-link{border-radius:10px;padding:10px}.metrics{gap:1.15rem}.met{border-radius:16px;box-shadow:0 4px 16px rgba(7,25,30,.035)}.tbl-wrap,.modal,.auth-card{border-radius:18px;box-shadow:var(--shadow)}.fc{border-radius:10px;padding:11px 14px}.cart-drawer{box-shadow:-12px 0 40px rgba(7,25,30,.14)}
+@media(max-width:780px){nav{height:64px;padding-left:1rem;padding-right:1rem}.hero{min-height:auto;padding:4rem 1.25rem}.hero-inner{grid-template-columns:1fr;gap:2rem}.hero h1{font-size:2.85rem}.hero-data{padding:.75rem}.section{padding:3.5rem 1.25rem}.feat-grid{grid-template-columns:1fr}.dash-main{padding:1.25rem}.hero-copy-kicker{font-size:10px}}
 @media(max-width:780px){
   .farmer-profile-card{margin:-2rem 1rem 0;padding:1.25rem}
   .farmer-meta{gap:.75rem}
@@ -1036,7 +1072,7 @@ tr:hover td{background:var(--g50) !important}
   <div class="hero">
     <div class="hero-inner">
       <div>
-        <span style="display:inline-block;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);font-size:12px;padding:4px 12px;border-radius:20px;margin-bottom:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M4 20c8 0 14-6 14-14V4h-2C8 4 4 10 4 18v2Z"/><path d="M4 20l9-9"/></svg> NIGERIA'S FARM MARKETPLACE</span>
+        <span class="hero-copy-kicker">Nigeria's farm marketplace</span>
         <h1>Fresh from Farm,<br/>Direct to You</h1>
         <p>Connect with verified farmers across Nigeria. Skip the middlemen — buy directly, pay safely via escrow.</p>
         <div class="hero-btns">
@@ -1044,16 +1080,18 @@ tr:hover td{background:var(--g50) !important}
           <button class="btn btn-outline-w" onclick="go('register')">List Your Farm →</button>
         </div>
       </div>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num" id="statF">–</div><div class="stat-label">Farmers</div></div>
-        <div class="stat-card"><div class="stat-num" id="statP">–</div><div class="stat-label">Products</div></div>
-        <div class="stat-card"><div class="stat-num" id="statO">–</div><div class="stat-label">Orders</div></div>
-        <div class="stat-card"><div class="stat-num" id="statB">–</div><div class="stat-label">Buyers</div></div>
-      </div>
-      <div class="trust-strip">
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg><span><b>99%</b> Escrow Safe</span></div>
-        <div class="trust-item-divider"></div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg><span><b>Free</b> to Join</span></div>
+      <div class="hero-data">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num" id="statF">–</div><div class="stat-label">Farmers</div></div>
+          <div class="stat-card"><div class="stat-num" id="statP">–</div><div class="stat-label">Products</div></div>
+          <div class="stat-card"><div class="stat-num" id="statO">–</div><div class="stat-label">Orders</div></div>
+          <div class="stat-card"><div class="stat-num" id="statB">–</div><div class="stat-label">Buyers</div></div>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/></svg><span><b>99%</b> Escrow Safe</span></div>
+          <div class="trust-item-divider"></div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg><span><b>Free</b> to Join</span></div>
+        </div>
       </div>
     </div>
   </div>
