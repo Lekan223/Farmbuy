@@ -4087,8 +4087,14 @@ async function confirmDeleteAccount(){
   btn.textContent='Permanently Delete My Account';btn.disabled=false;
 
   if(error||data?.error){
+    // On a non-2xx response supabase-js sets data=null and hides the real reason
+    // inside error.context (the raw Response). Pull it out so the true error shows.
+    let detail=data?.error;
+    if(!detail&&error&&error.context&&typeof error.context.json==='function'){
+      try{const body=await error.context.json();detail=body?.error||body?.message;}catch(_){}
+    }
     Monitor.log('confirmDeleteAccount',error||data.error);
-    errEl.textContent=data?.error||error.message||'Something went wrong deleting your account.';
+    errEl.textContent=detail||(error&&error.message)||'Something went wrong deleting your account.';
     errEl.classList.add('show');
     return;
   }
