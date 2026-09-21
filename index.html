@@ -4386,6 +4386,13 @@ async function register(){
     Monitor.log('register', error);
     errEl.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg> '+error.message;errEl.classList.add('show');return;
   }
+  // Email already registered AND confirmed: Supabase returns an obfuscated user with no identities
+  // and sends no code. Stop here instead of pretending the signup worked.
+  if(data && data.user && Array.isArray(data.user.identities) && data.user.identities.length===0){
+    errEl.textContent='This email is already registered. Please sign in instead.';
+    errEl.classList.add('show');
+    return;
+  }
   if(data.user){
     const {error:profErr}=await sb.from('profiles').insert({id:data.user.id,full_name:sanitize(fullName),role:regRole,phone:sanitize(phone),state});
     if(profErr){Monitor.log('register.profile', profErr);}
