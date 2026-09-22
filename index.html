@@ -1010,7 +1010,7 @@ tr:hover td{background:var(--surf3) !important}
           <div style="font-size:11px;color:var(--muted)">System Administrator</div>
         </div>
       </div>
-      <button class="sb-link" id="al-an" onclick="showAdmin('an')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg> Analytics</button>
+      <button class="sb-link" id="al-an" onclick="showAdmin('an')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Dashboard</button>
       <button class="sb-link" id="al-us" onclick="showAdmin('us')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 3-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.3"/><path d="M15.3 14.2c2.3.4 4.5 2.4 4.5 5.8"/></svg> Users</button>
       <button class="sb-link" id="al-tx" onclick="showAdmin('tx')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Orders</button>
       <button class="sb-link" id="al-disp" onclick="showAdmin('disp')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M12 9v4"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg> Disputes <span id="admDispBadge" style="background:var(--r400);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px;display:none">0</span></button>
@@ -1024,20 +1024,80 @@ tr:hover td{background:var(--surf3) !important}
     </div>
     <div class="dash-main">
       <div class="dpanel active" id="ap-an">
-        <h2 style="font-family:var(--fd);color:var(--g800);margin-bottom:1.5rem">System Analytics</h2>
-        <div class="metrics">
-          <div class="met"><div class="met-label">Platform Revenue</div><div class="met-val" id="admR">...</div></div>
-          <div class="met"><div class="met-label">Total Users</div><div class="met-val" id="admU">...</div></div>
-          <div class="met"><div class="met-label">Products</div><div class="met-val" id="admP">...</div></div>
-          <div class="met"><div class="met-label">Orders</div><div class="met-val" id="admO">...</div></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:1.75rem">
+          <div>
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px" id="admGreetDate"></div>
+            <h2 style="font-family:var(--fd);color:var(--g800);margin:0;font-size:1.6rem;max-width:520px;line-height:1.25" id="admGreetHeadline">Good morning. Here's how the marketplace is doing.</h2>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:7px;background:var(--surf);border:1px solid var(--border);padding:9px 14px;border-radius:10px;font-size:13px;color:var(--muted)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+              All time
+            </div>
+            <button class="btn btn-primary" onclick="exportAdminReport()">Export report</button>
+          </div>
         </div>
+
+        <div class="metrics">
+          <div class="met">
+            <div class="met-label">Platform Revenue &middot; 1% fee on delivered orders</div>
+            <div class="met-val" id="admR" style="color:var(--g600)">...</div>
+            <div id="admRSpark" style="display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:10px"></div>
+          </div>
+          <div class="met">
+            <div class="met-label">Active Farmers</div>
+            <div class="met-val" id="admActiveFarmers">...</div>
+            <div style="font-size:11.5px;color:var(--light);margin-top:6px" id="admPendingVerHint">—</div>
+          </div>
+          <div class="met">
+            <div class="met-label">Total Orders</div>
+            <div class="met-val" id="admO">...</div>
+            <div style="font-size:11.5px;color:var(--light);margin-top:6px" id="admInTransitHint">—</div>
+          </div>
+          <div class="met">
+            <div class="met-label">Withdrawal Requests</div>
+            <div class="met-val" id="admPendingWdCount">...</div>
+            <div style="font-size:11.5px;color:var(--light);margin-top:6px" id="admPendingWdSumHint">—</div>
+          </div>
+        </div>
+
         <div class="needs-attn-card" id="needsAttentionCard" style="display:none">
           <div class="needs-attn-hdr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><path d="M12 9v4"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg> Needs Attention</div>
           <div class="needs-attn-list" id="needsAttentionList"></div>
         </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-top:1rem">
-          <div style="font-weight:600;margin-bottom:.75rem">Transaction Volume (Last 7 Days)</div>
-          <div id="txVolChart"><div class="loading">Loading...</div></div>
+
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:1.25rem;align-items:start" id="admDashGrid">
+          <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:10px;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:600;color:var(--text)">Orders by status</div>
+                <div style="font-size:12px;color:var(--light)">Last 8 weeks &middot; delivered vs. all orders placed</div>
+              </div>
+              <button class="sb-link" style="width:auto;padding:6px 10px;font-size:12.5px;color:var(--g600);border-left:none" onclick="showAdmin('tx')">View all orders</button>
+            </div>
+            <div id="admOrdersByStatusChart"><div class="loading">Loading...</div></div>
+          </div>
+          <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;gap:10px;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:600;color:var(--text)">Verification queue</div>
+                <div style="font-size:12px;color:var(--light)">Selfie + government ID submitted</div>
+              </div>
+              <button class="sb-link" style="width:auto;padding:6px 10px;font-size:12.5px;color:var(--g600);border-left:none" onclick="showAdmin('ver')">See all</button>
+            </div>
+            <div id="admVerQueuePreview"><div class="loading">Loading...</div></div>
+          </div>
+        </div>
+
+        <div class="tbl-wrap" style="margin-top:1rem">
+          <div class="tbl-head">
+            <div>
+              <div class="tbl-title">Withdrawal requests</div>
+              <div style="font-size:12px;color:var(--light);margin-top:2px">Farmers cashing out from delivered-order earnings</div>
+            </div>
+            <button class="sb-link" style="width:auto;padding:6px 10px;font-size:12.5px;color:var(--g600);border-left:none" onclick="showAdmin('wd')">Manage all</button>
+          </div>
+          <div id="admDashWdReqs"><div class="loading">Loading...</div></div>
         </div>
       </div>
       <div class="dpanel" id="ap-us">
@@ -3331,11 +3391,26 @@ async function loadAdmin(){
   if(ordErr)Monitor.log('loadAdmin.orders',ordErr);
   if(dispErr)Monitor.log('loadAdmin.disputes',dispErr);
   if(msgErr)Monitor.log('loadAdmin.contactMessages',msgErr);
-  const rev=(orders||[]).reduce((s,o)=>s+Number(o.total_amount),0);
+  const grossFees=(orders||[]).filter(o=>o.status==='delivered').reduce((s,o)=>s+Number(o.total_amount),0)*0.01;
+  const activeFarmers=(users||[]).filter(u=>u.role==='farmer'&&!u.is_suspended).length;
+  const inTransitCount=(orders||[]).filter(o=>o.status==='in_transit').length;
   document.getElementById('admU').textContent=usersErr?'—':(users||[]).length;
   document.getElementById('admP').textContent=prodErr?'—':(products||[]).length;
   document.getElementById('admO').textContent=ordErr?'—':(orders||[]).length;
-  document.getElementById('admR').textContent=ordErr?'—':'₦'+rev.toLocaleString();
+  document.getElementById('admR').textContent=ordErr?'—':'₦'+grossFees.toLocaleString(undefined,{maximumFractionDigits:0});
+  document.getElementById('admActiveFarmers').textContent=usersErr?'—':activeFarmers;
+  document.getElementById('admInTransitHint').textContent=ordErr?'—':(inTransitCount===1?'1 order in transit':inTransitCount+' orders in transit');
+  const greetDateEl=document.getElementById('admGreetDate');
+  if(greetDateEl)greetDateEl.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const greetHeadEl=document.getElementById('admGreetHeadline');
+  if(greetHeadEl){
+    const hour=new Date().getHours();
+    const partOfDay=hour<12?'morning':hour<17?'afternoon':'evening';
+    const firstName=(curProfile?.full_name||'').split(' ')[0];
+    greetHeadEl.textContent=`Good ${partOfDay}${firstName?', '+firstName:''}. Here's how the marketplace is doing.`;
+  }
+  renderAdminRevenueSparkline(orders,ordErr);
+  renderAdminOrdersByStatusChart(orders,ordErr);
   document.getElementById('admUsrs').innerHTML=usersErr?`<div class="empty-state">Couldn't load users: ${usersErr.message}. This is usually a Supabase Row-Level-Security policy blocking the admin role from reading all rows in "profiles" — check that table's RLS policies.</div>`:`<table><thead><tr><th>Name</th><th>Role</th><th>State</th><th>Phone</th><th>Status</th><th>Action</th></tr></thead><tbody>
     ${(users||[]).map(u=>`<tr><td>${u.full_name||'—'}${u.verification_status==='approved'?'<span class="verified-badge-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Verified</span>':''}</td><td><span class="badge ${u.role==='farmer'?'bg':u.role==='admin'?'br':'bb'}">${u.role||'—'}</span></td><td>${u.state||'—'}</td><td>${u.phone||'—'}</td><td>${u.is_suspended?'<span class="badge br">Suspended</span>':'<span class="badge bg">Active</span>'}</td><td>${u.role==='admin'?'—':u.is_suspended?`<button class="btn btn-ghost btn-sm" onclick="unsuspendUser('${u.id}')">Unsuspend</button>`:`<button class="btn btn-danger btn-sm" onclick='openSuspendModal("${u.id}","${(u.full_name||'this user').replace(/"/g,'')}")'>Suspend</button>`}</td></tr>`).join('')}
   </tbody></table>`;
@@ -3346,6 +3421,7 @@ async function loadAdmin(){
 
   // Verification requests queue
   const pendingVer=(users||[]).filter(u=>u.verification_status==='pending');
+  document.getElementById('admPendingVerHint').textContent=usersErr?'—':(pendingVer.length===0?'All caught up':pendingVer.length===1?'1 pending verification':pendingVer.length+' pending verification');
   const verBadge=document.getElementById('admVerBadge');
   if(verBadge){
     if(pendingVer.length>0){verBadge.textContent=pendingVer.length;verBadge.style.display='inline-block';}
@@ -3353,6 +3429,7 @@ async function loadAdmin(){
   }
   const verBadgeMob=document.getElementById('admVerBadgeMob');
   if(verBadgeMob)verBadgeMob.style.display=pendingVer.length>0?'block':'none';
+  renderAdminVerQueuePreview(pendingVer);
   await renderAdminVerifyQueue(pendingVer);
   await loadAdminWithdrawTab();
 
@@ -3379,6 +3456,110 @@ async function loadAdmin(){
   refreshAdminMoreDot();
   renderAdminDisputes(disputes,dispErr);
   renderAdminContactMessages(contactMsgs,msgErr);
+}
+
+// Weekly platform-fee sparkline for the Dashboard hero stat (8 weeks, oldest to newest)
+function renderAdminRevenueSparkline(orders,ordErr){
+  const el=document.getElementById('admRSpark');
+  if(!el)return;
+  if(ordErr){el.innerHTML='';return;}
+  const weeks=[];
+  for(let i=7;i>=0;i--){
+    const end=new Date();end.setDate(end.getDate()-i*7);
+    const start=new Date(end);start.setDate(start.getDate()-7);
+    weeks.push({start,end,total:0});
+  }
+  (orders||[]).filter(o=>o.status==='delivered').forEach(o=>{
+    if(!o.created_at)return;
+    const d=new Date(o.created_at);
+    const w=weeks.find(w=>d>=w.start&&d<w.end);
+    if(w)w.total+=Number(o.total_amount)*0.01;
+  });
+  const max=Math.max(...weeks.map(w=>w.total),1);
+  el.innerHTML=weeks.map((w,i)=>{
+    const h=Math.max(10,Math.round((w.total/max)*100));
+    const isLast=i===weeks.length-1;
+    return `<div style="flex:1;height:${h}%;border-radius:2px;background:${isLast?'var(--g400)':'var(--g100)'}" title="₦${Math.round(w.total).toLocaleString()}"></div>`;
+  }).join('');
+}
+
+// 8-week "Orders by status" bars for the Dashboard: a muted bar for all orders placed
+// that week, with a green bar overlaid at the bottom showing how many were delivered.
+function renderAdminOrdersByStatusChart(orders,ordErr){
+  const el=document.getElementById('admOrdersByStatusChart');
+  if(!el)return;
+  if(ordErr){el.innerHTML=`<div class="empty-state">Couldn't load chart: ${ordErr.message}</div>`;return;}
+  const weeks=[];
+  for(let i=7;i>=0;i--){
+    const end=new Date();end.setDate(end.getDate()-i*7);
+    const start=new Date(end);start.setDate(start.getDate()-7);
+    weeks.push({start,end,label:'Wk '+(8-i),total:0,delivered:0});
+  }
+  (orders||[]).forEach(o=>{
+    if(!o.created_at)return;
+    const d=new Date(o.created_at);
+    const w=weeks.find(w=>d>=w.start&&d<w.end);
+    if(w){w.total++;if(o.status==='delivered')w.delivered++;}
+  });
+  const max=Math.max(...weeks.map(w=>w.total),1);
+  const allZero=weeks.every(w=>w.total===0);
+  el.innerHTML=`
+    <div style="display:flex;align-items:flex-end;gap:10px;height:130px">
+      ${weeks.map(w=>{
+        const totalH=Math.max(w.total?6:2,Math.round((w.total/max)*100));
+        const deliveredH=w.total?Math.round((w.delivered/w.total)*totalH):0;
+        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div style="width:100%;height:100px;display:flex;align-items:flex-end;border-radius:6px;overflow:hidden;background:var(--surf3)" title="${w.label}: ${w.total} placed, ${w.delivered} delivered">
+            <div style="width:100%;height:${totalH}%;position:relative;border-radius:4px 4px 0 0;background:var(--surf3)">
+              <div style="position:absolute;bottom:0;left:0;right:0;height:${totalH?Math.round((deliveredH/totalH)*100):0}%;background:var(--g400);border-radius:4px 4px 0 0"></div>
+            </div>
+          </div>
+          <span class="bar-label">${w.label}</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="display:flex;gap:16px;margin-top:14px;font-size:11.5px;color:var(--muted)">
+      <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--g400);margin-right:6px"></span>Delivered</span>
+      <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--surf3);border:1px solid var(--border);margin-right:6px"></span>All orders placed</span>
+    </div>
+    ${allZero?'<div style="text-align:center;font-size:12px;color:var(--light);margin-top:8px">No orders in the last 8 weeks.</div>':''}
+  `;
+}
+
+// Compact read-only preview of the verification queue for the Dashboard — deliberately
+// has no Approve/Reject here, since an admin should see the selfie + ID photos (in the
+// full Verifications tab) before approving anyone, not act from a name-only list.
+function renderAdminVerQueuePreview(pendingVer){
+  const el=document.getElementById('admVerQueuePreview');
+  if(!el)return;
+  if(!pendingVer.length){el.innerHTML='<div class="empty-state">No pending verification requests.</div>';return;}
+  el.innerHTML=pendingVer.slice(0,5).map(u=>{
+    const initials=(u.full_name||'?').trim().split(/\s+/).map(p=>p[0]).slice(0,2).join('').toUpperCase();
+    return `<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)">
+      <div style="width:34px;height:34px;border-radius:50%;background:var(--surf3);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:600;font-size:12.5px;color:var(--g600);flex-shrink:0">${initials}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13.5px;font-weight:600;color:var(--text)">${u.full_name||'Farmer'}</div>
+        <div style="font-size:11.5px;color:var(--light)">${u.state||'—'} &middot; ${u.verification_submitted_at?'submitted '+new Date(u.verification_submitted_at).toLocaleDateString():'—'}</div>
+      </div>
+      <button class="sb-link" style="width:auto;padding:5px 10px;font-size:12px;color:var(--g600);border-left:none" onclick="showAdmin('ver')">Review</button>
+    </div>`;
+  }).join('')+(pendingVer.length>5?`<div style="text-align:center;padding-top:10px;font-size:12px;color:var(--light)">+${pendingVer.length-5} more</div>`:'');
+}
+
+// Exports the current order list as a CSV file the admin can open in Excel/Sheets.
+async function exportAdminReport(){
+  const {data:orders,error}=await sb.from('orders').select('*,products(name),profiles!orders_buyer_id_fkey(full_name)').order('created_at',{ascending:false});
+  if(error){Monitor.log('exportAdminReport',error);toast('Could not export: '+error.message,true);return;}
+  const rows=[['Product','Buyer','Amount (NGN)','Status','Date'],
+    ...(orders||[]).map(o=>[o.products?.name||'',o.profiles?.full_name||'',Number(o.total_amount),o.status,new Date(o.created_at).toISOString()])];
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=`agrolink-orders-${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('Report exported.');
 }
 
 function renderTxVolumeChart(orders,ordErr){
@@ -3693,6 +3874,26 @@ async function loadAdminWithdrawTab(){
   const badgeMob=document.getElementById('admWdBadgeMob');
   if(badgeMob)badgeMob.style.display=pendingReqs.length?'block':'none';
   refreshAdminMoreDot();
+
+  // Dashboard stat card + compact preview table
+  const pendingSum=pendingReqs.reduce((s,w)=>s+Number(w.amount),0);
+  const dashCountEl=document.getElementById('admPendingWdCount');
+  if(dashCountEl)dashCountEl.textContent=pendingReqs.length;
+  const dashSumEl=document.getElementById('admPendingWdSumHint');
+  if(dashSumEl)dashSumEl.textContent=pendingReqs.length?'₦'+pendingSum.toLocaleString()+' awaiting approval':'Nothing awaiting approval';
+  const dashList=document.getElementById('admDashWdReqs');
+  if(dashList){
+    if(!pendingReqs.length){dashList.innerHTML='<div class="empty-state">No pending withdrawal requests.</div>';}
+    else{dashList.innerHTML=`<table><thead><tr><th>Farmer</th><th>Bank</th><th>Amount</th><th>Requested</th><th>Action</th></tr></thead><tbody>
+      ${pendingReqs.slice(0,4).map(w=>`<tr>
+        <td>${w.profiles?.full_name||'—'}</td>
+        <td>${w.bank_name||'—'} &middot; ${w.account_number||'—'}</td>
+        <td>₦${Number(w.amount).toLocaleString()}</td>
+        <td>${new Date(w.created_at).toLocaleDateString()}</td>
+        <td><button class="btn btn-primary btn-sm" onclick="approveWithdrawal('${w.id}')">Accept</button> <button class="btn btn-danger btn-sm" onclick="declineWithdrawal('${w.id}')" style="margin-left:4px">Decline</button></td>
+      </tr>`).join('')}
+    </tbody></table>`;}
+  }
 
   const rq=document.getElementById('admWdReqs');
   if(!farmerReqs.length){rq.innerHTML='<div class="empty-state">No farmer withdrawal requests yet.</div>';}
