@@ -3394,8 +3394,9 @@ async function loadAdmin(){
   const grossFees=(orders||[]).filter(o=>o.status==='delivered').reduce((s,o)=>s+Number(o.total_amount),0)*0.01;
   const activeFarmers=(users||[]).filter(u=>u.role==='farmer'&&!u.is_suspended).length;
   const inTransitCount=(orders||[]).filter(o=>o.status==='in_transit').length;
-  document.getElementById('admU').textContent=usersErr?'—':(users||[]).length;
-  document.getElementById('admP').textContent=prodErr?'—':(products||[]).length;
+  // (Total Users / Products are visible in the Users and admUsrs tables below;
+  // they no longer have their own dashboard cards since the redesign, so
+  // there's nothing to write into admU/admP anymore.)
   document.getElementById('admO').textContent=ordErr?'—':(orders||[]).length;
   document.getElementById('admR').textContent=ordErr?'—':'₦'+grossFees.toLocaleString(undefined,{maximumFractionDigits:0});
   document.getElementById('admActiveFarmers').textContent=usersErr?'—':activeFarmers;
