@@ -636,6 +636,12 @@ tr:hover td{background:var(--surf3) !important}
 @media (max-width:900px){
   #page-admin .metrics{grid-template-columns:1fr 1fr}
   #page-admin .metrics .met:first-child{grid-column:1/-1}
+  #admDashGrid{grid-template-columns:1fr !important}
+}
+@media (max-width:600px){
+  #page-admin .metrics{grid-template-columns:1fr}
+  #page-admin .adm-dash-header{flex-direction:column;align-items:stretch}
+  #page-admin .adm-dash-header h2{font-size:1.35rem}
 }
 </style>
 </head>
@@ -768,7 +774,7 @@ tr:hover td{background:var(--surf3) !important}
     <button class="mbn-more-item" id="mbna-err" onclick="showAdmin('err');renderErrorLog();closeMbnMore()" style="position:relative"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><circle cx="12" cy="16.3" r="0.6" fill="currentColor"/></svg> Errors<span id="errBadgeMob" style="display:none;width:7px;height:7px;border-radius:50%;background:var(--r400);margin-left:2px"></span></button>
   </div>
   <div class="mob-bottom-inner">
-    <button class="mbn active" id="mbna-an" onclick="showAdmin('an')"><span class="mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>Analytics</button>
+    <button class="mbn active" id="mbna-an" onclick="showAdmin('an')"><span class="mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Dashboard</button>
     <button class="mbn" id="mbna-us" onclick="showAdmin('us')"><span class="mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 3-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.3"/><path d="M15.3 14.2c2.3.4 4.5 2.4 4.5 5.8"/></svg></span>Users</button>
     <button class="mbn" id="mbna-tx" onclick="showAdmin('tx')"><span class="mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>Orders</button>
     <button class="mbn" id="mbna-ver" onclick="showAdmin('ver')" style="position:relative"><span class="mbn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></span>Verify<span id="admVerBadgeMob" style="display:none;position:absolute;top:4px;right:22%;width:7px;height:7px;border-radius:50%;background:var(--a400)"></span></button>
@@ -1024,7 +1030,7 @@ tr:hover td{background:var(--surf3) !important}
     </div>
     <div class="dash-main">
       <div class="dpanel active" id="ap-an">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:1.75rem">
+        <div class="adm-dash-header" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:1.75rem">
           <div>
             <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px" id="admGreetDate"></div>
             <h2 style="font-family:var(--fd);color:var(--g800);margin:0;font-size:1.6rem;max-width:520px;line-height:1.25" id="admGreetHeadline">Good morning. Here's how the marketplace is doing.</h2>
