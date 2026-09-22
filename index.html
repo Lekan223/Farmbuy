@@ -612,97 +612,26 @@ tr:hover td{background:var(--surf3) !important}
   .reg-submit-area{position:sticky;bottom:0;background:var(--surf);margin:1rem -1.5rem -1.5rem;padding:1rem 1.5rem calc(1rem + env(safe-area-inset-bottom,0));box-shadow:0 -6px 16px rgba(0,0,0,.06);border-top:1px solid var(--border)}
 }
 /* ══════════════════════════════════════════════════════
-   ADMIN DASHBOARD — scoped dark theme
-   Everything below is prefixed with #page-admin so it can
-   never leak into the farmer/buyer dashboard or the site's
-   light/dark toggle, which share the same class names.
+   ADMIN DASHBOARD — visual refresh
+   Scoped to #page-admin, but built entirely from the site's
+   own design tokens (--surf, --border, --text, --g400, etc.)
+   so it follows the light/dark toggle instead of forcing one.
    ══════════════════════════════════════════════════════ */
-#page-admin{
-  --adm-bg:#07191E;--adm-surf:#0e242b;--adm-surf2:#132c34;--adm-surf3:#183440;
-  --adm-line:rgba(216,240,234,.09);--adm-line2:rgba(216,240,234,.16);
-  --adm-text:#EAF3F0;--adm-muted:#8FADA6;--adm-muted2:#5E7A75;
-  --adm-green:#02F5A1;--adm-green-dim:rgba(2,245,161,.14);
-  --adm-amber:#f5a623;--adm-amber-dim:rgba(245,166,35,.14);
-  --adm-red:#f0817c;--adm-red-dim:rgba(226,80,74,.16);
-  --adm-blue:#7db3ec;--adm-blue-dim:rgba(55,138,221,.16);
-  /* Re-point the shared design-system tokens too, since several admin panels
-     (Disputes, Contact Messages) build their markup with inline styles like
-     style="background:var(--surf)" rather than classes. Overriding the
-     tokens here — scoped to #page-admin only — makes that inline-styled
-     markup pick up the dark theme automatically, with no JS changes. */
-  --surf:var(--adm-surf);--surf2:var(--adm-surf2);--surf3:var(--adm-surf3);
-  --border:var(--adm-line);--border2:var(--adm-line2);
-  --text:var(--adm-text);--muted:var(--adm-muted);--light:var(--adm-muted2);
-  --g800:var(--adm-text);
-  background:var(--adm-bg);color:var(--adm-text);
-}
-#page-admin .dash-layout{background:var(--adm-bg)}
-#page-admin .sidebar{background:var(--adm-surf);border-right:1px solid var(--adm-line)}
-#page-admin .dash-main{background:var(--adm-bg)}
-#page-admin h2{font-family:var(--fd);color:var(--adm-text);font-weight:600}
-#page-admin .sb-link{color:var(--adm-muted);border-radius:10px}
-#page-admin .sb-link svg{opacity:.8}
-#page-admin .sb-link:hover{background:var(--adm-surf2);color:var(--adm-text)}
-#page-admin .sb-link.active{background:var(--adm-green-dim);color:var(--adm-green);border-left-color:var(--adm-green);font-weight:700}
-#page-admin .sb-link.active svg{opacity:1}
+#page-admin{background:var(--surf2);color:var(--text)}
+#page-admin .dash-main{background:var(--surf2)}
 
-/* metrics row → one hero stat + three quieter cards */
+/* metrics row → one hero stat (Platform Revenue) + three quieter cards */
 #page-admin .metrics{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:14px;margin-bottom:1.5rem}
-#page-admin .met{background:var(--adm-surf);border:1px solid var(--adm-line);border-radius:16px;padding:1.15rem 1.25rem}
-#page-admin .met-label{color:var(--adm-muted);font-family:var(--fb)}
-#page-admin .met-val{color:var(--adm-text)}
 #page-admin .metrics .met:first-child{
-  background:linear-gradient(150deg,var(--adm-surf3),var(--adm-surf));
+  background:linear-gradient(150deg,var(--surf3),var(--surf));
   position:relative;overflow:hidden;
 }
 #page-admin .metrics .met:first-child::after{
-  content:"";position:absolute;right:-30px;top:-30px;width:130px;height:130px;
-  background:radial-gradient(circle,var(--adm-green-dim),transparent 70%);
+  content:"";position:absolute;right:-30px;top:-30px;width:140px;height:140px;
+  background:radial-gradient(circle,var(--g100),transparent 70%);pointer-events:none;
 }
-#page-admin .metrics .met:first-child .met-val{font-size:2.1rem;color:var(--adm-green)}
-
-#page-admin .needs-attn-card{background:var(--adm-surf);border-color:var(--adm-red)}
-#page-admin .needs-attn-hdr{color:var(--adm-red)}
-#page-admin .needs-attn-item{color:var(--adm-text)}
-
-#page-admin .tbl-wrap{background:var(--adm-surf);border:1px solid var(--adm-line);border-radius:16px}
-#page-admin .tbl-head{border-bottom:1px solid var(--adm-line)}
-#page-admin .tbl-title{color:var(--adm-text)}
-#page-admin table{color:var(--adm-text)}
-#page-admin th{color:var(--adm-muted2);font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:600;text-align:left;padding:12px 14px;border-bottom:1px solid var(--adm-line);white-space:nowrap}
-#page-admin td{padding:13px 14px;border-bottom:1px solid var(--adm-line);font-size:13.5px}
-#page-admin tr:last-child td{border-bottom:none}
-#page-admin tr:hover td{background:var(--adm-surf2)}
-
-#page-admin .badge.bg{background:var(--adm-green-dim);color:var(--adm-green)}
-#page-admin .badge.br{background:var(--adm-red-dim);color:var(--adm-red)}
-#page-admin .badge.bb{background:var(--adm-blue-dim);color:var(--adm-blue)}
-#page-admin .badge.ba{background:var(--adm-amber-dim);color:var(--adm-amber)}
-#page-admin .verified-badge-sm{background:var(--adm-green);color:#07191E}
-
-#page-admin .loading{background:linear-gradient(90deg,var(--adm-surf2) 25%,var(--adm-surf3) 50%,var(--adm-surf2) 75%);background-size:400px 100%}
-#page-admin .empty-state{background:var(--adm-surf2);color:var(--adm-muted)}
-
-#page-admin .bal-card{background:linear-gradient(150deg,var(--adm-surf3) 0%,var(--adm-bg) 100%);border:1px solid var(--adm-line)}
-#page-admin .bal-val{color:var(--adm-green)}
-
-#page-admin .btn-primary{background:var(--adm-green);color:#07191E;border:none;font-weight:700}
-#page-admin .btn-ghost{border-color:var(--adm-line2);color:var(--adm-text);background:transparent}
-#page-admin .btn-ghost:hover{background:var(--adm-surf2)}
-#page-admin .btn-danger{background:var(--adm-red-dim);color:var(--adm-red);border:none}
-
-/* verification queue cards (photo + ID review) already use the shared tokens,
-   so they inherit the dark theme automatically — just tighten the border */
-#page-admin .review-doc-card{border-color:var(--adm-line);border-radius:14px}
-#page-admin .review-doc-img{background:var(--adm-surf3)}
-
-/* mobile bottom nav for admin is a separate element outside #page-admin, so it's styled unconditionally dark here — it's only ever shown while the admin panel is open */
-#mobBottomAdmin.mob-bottom{background:var(--adm-surf,#0e242b);border-top-color:rgba(216,240,234,.09)}
-#mobBottomAdmin .mbn{color:var(--adm-muted,#8FADA6)}
-#mobBottomAdmin .mbn.active{color:var(--adm-green,#02F5A1)}
-#mobBottomAdminMore.mbn-more-sheet{background:var(--adm-surf,#0e242b);border-color:rgba(216,240,234,.16)}
-#mobBottomAdminMore .mbn-more-item{color:var(--adm-muted,#8FADA6)}
-#mobBottomAdminMore .mbn-more-item:hover,#mobBottomAdminMore .mbn-more-item.active{background:var(--adm-surf2,#132c34);color:var(--adm-green,#02F5A1)}
+#page-admin .metrics .met:first-child .met-val{font-size:2.1rem;color:var(--g600);position:relative}
+#page-admin .metrics .met:first-child .met-label{position:relative}
 
 @media (max-width:900px){
   #page-admin .metrics{grid-template-columns:1fr 1fr}
@@ -1067,7 +996,7 @@ tr:hover td{background:var(--surf3) !important}
 <div class="page" id="page-admin">
   <div class="dash-layout">
     <div class="sidebar">
-      <div style="padding:0 8px 1.1rem;border-bottom:1px solid rgba(216,240,234,.09);margin-bottom:1rem;display:flex;align-items:center;gap:10px">
+      <div style="padding:0 8px 1.1rem;border-bottom:1px solid var(--border);margin-bottom:1rem;display:flex;align-items:center;gap:10px">
         <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(155deg,#02F5A1,#00c97f);display:flex;align-items:center;justify-content:center;flex-shrink:0">
           <svg width="17" height="17" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E"/>
@@ -1077,8 +1006,8 @@ tr:hover td{background:var(--surf3) !important}
           </svg>
         </div>
         <div>
-          <div style="font-family:var(--fd);font-weight:600;font-size:14.5px;color:#EAF3F0">Admin Panel</div>
-          <div style="font-size:11px;color:#8FADA6">System Administrator</div>
+          <div style="font-family:var(--fd);font-weight:600;font-size:14.5px;color:var(--g800)">Admin Panel</div>
+          <div style="font-size:11px;color:var(--muted)">System Administrator</div>
         </div>
       </div>
       <button class="sb-link" id="al-an" onclick="showAdmin('an')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg> Analytics</button>
