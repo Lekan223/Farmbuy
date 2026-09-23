@@ -1046,7 +1046,7 @@ tr:hover td{background:var(--surf3) !important}
 
         <div class="metrics">
           <div class="met">
-            <div class="met-label">Platform Revenue &middot; 1% fee on delivered orders</div>
+            <div class="met-label">Platform Revenue &middot; 1% fee, minus withdrawals</div>
             <div class="met-val" id="admR" style="color:var(--g600)">...</div>
             <div id="admRSpark" style="display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:10px"></div>
           </div>
@@ -3397,14 +3397,18 @@ async function loadAdmin(){
   if(ordErr)Monitor.log('loadAdmin.orders',ordErr);
   if(dispErr)Monitor.log('loadAdmin.disputes',dispErr);
   if(msgErr)Monitor.log('loadAdmin.contactMessages',msgErr);
-  const grossFees=(orders||[]).filter(o=>o.status==='delivered').reduce((s,o)=>s+Number(o.total_amount),0)*0.01;
   const activeFarmers=(users||[]).filter(u=>u.role==='farmer'&&!u.is_suspended).length;
   const inTransitCount=(orders||[]).filter(o=>o.status==='in_transit').length;
   // (Total Users / Products are visible in the Users and admUsrs tables below;
   // they no longer have their own dashboard cards since the redesign, so
   // there's nothing to write into admU/admP anymore.)
   document.getElementById('admO').textContent=ordErr?'—':(orders||[]).length;
-  document.getElementById('admR').textContent=ordErr?'—':'₦'+grossFees.toLocaleString(undefined,{maximumFractionDigits:0});
+  // Platform Revenue on the dashboard shows the SAME figure as the Withdrawals tab
+  // (available balance = 1% fee on delivered orders, minus fees already withdrawn),
+  // computed once inside loadAdminWithdrawTab() and read from curAdminAvailableBalance,
+  // so the two can never show two different numbers for what looks like the same thing.
+  await loadAdminWithdrawTab();
+  document.getElementById('admR').textContent=ordErr?'—':'₦'+curAdminAvailableBalance.toLocaleString(undefined,{maximumFractionDigits:0});
   document.getElementById('admActiveFarmers').textContent=usersErr?'—':activeFarmers;
   document.getElementById('admInTransitHint').textContent=ordErr?'—':(inTransitCount===1?'1 order in transit':inTransitCount+' orders in transit');
   const greetDateEl=document.getElementById('admGreetDate');
@@ -3438,7 +3442,6 @@ async function loadAdmin(){
   if(verBadgeMob)verBadgeMob.style.display=pendingVer.length>0?'block':'none';
   renderAdminVerQueuePreview(pendingVer);
   await renderAdminVerifyQueue(pendingVer);
-  await loadAdminWithdrawTab();
 
   // Dispute queue
   const dispBadge=document.getElementById('admDispBadge');
@@ -3510,24 +3513,59 @@ function renderAdminOrdersByStatusChart(orders,ordErr){
   });
   const max=Math.max(...weeks.map(w=>w.total),1);
   const allZero=weeks.every(w=>w.total===0);
+
+  // Smooth line chart, plotted in a 700x160 coordinate space (scales to the card via viewBox).
+  const W=700,H=160,padL=6,padR=6,padT=10,padB=10;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const stepX=weeks.length>1?plotW/(weeks.length-1):0;
+  const xAt=i=>padL+i*stepX;
+  const yAt=v=>padT+plotH-(v/max)*plotH;
+  const totalPts=weeks.map((w,i)=>({x:xAt(i),y:yAt(w.total)}));
+  const deliveredPts=weeks.map((w,i)=>({x:xAt(i),y:yAt(w.delivered)}));
+
+  // Catmull-Rom → cubic Bézier, for a smooth (not jagged) line through every point.
+  const smoothPath=pts=>{
+    let d=`M${pts[0].x},${pts[0].y}`;
+    for(let i=0;i<pts.length-1;i++){
+      const p0=pts[i-1]||pts[i], p1=pts[i], p2=pts[i+1], p3=pts[i+2]||p2;
+      const c1x=p1.x+(p2.x-p0.x)/6, c1y=p1.y+(p2.y-p0.y)/6;
+      const c2x=p2.x-(p3.x-p1.x)/6, c2y=p2.y-(p3.y-p1.y)/6;
+      d+=` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+    }
+    return d;
+  };
+  const totalLine=smoothPath(totalPts);
+  const deliveredLine=smoothPath(deliveredPts);
+  const areaFill=`${deliveredLine} L${deliveredPts[deliveredPts.length-1].x.toFixed(1)},${(padT+plotH).toFixed(1)} L${deliveredPts[0].x.toFixed(1)},${(padT+plotH).toFixed(1)} Z`;
+  const gridLines=[0,0.33,0.66,1].map(f=>{
+    const y=(padT+plotH*f).toFixed(1);
+    return `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--border)" stroke-width="1"/>`;
+  }).join('');
+
   el.innerHTML=`
-    <div style="display:flex;align-items:flex-end;gap:10px;height:130px">
-      ${weeks.map(w=>{
-        const totalH=Math.max(w.total?6:2,Math.round((w.total/max)*100));
-        const deliveredH=w.total?Math.round((w.delivered/w.total)*totalH):0;
-        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
-          <div style="width:100%;height:100px;display:flex;align-items:flex-end;border-radius:6px;overflow:hidden;background:var(--surf3)" title="${w.label}: ${w.total} placed, ${w.delivered} delivered">
-            <div style="width:100%;height:${totalH}%;position:relative;border-radius:4px 4px 0 0;background:var(--surf3)">
-              <div style="position:absolute;bottom:0;left:0;right:0;height:${totalH?Math.round((deliveredH/totalH)*100):0}%;background:var(--g400);border-radius:4px 4px 0 0"></div>
-            </div>
-          </div>
-          <span class="bar-label">${w.label}</span>
-        </div>`;
+    <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:150px;overflow:visible" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="admOrdChartFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--g400)" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="var(--g400)" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      ${gridLines}
+      <path d="${areaFill}" fill="url(#admOrdChartFill)" stroke="none"/>
+      <path d="${totalLine}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+      <path d="${deliveredLine}" fill="none" stroke="var(--g600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${deliveredPts.map((p,i)=>{
+        const isLast=i===deliveredPts.length-1;
+        return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isLast?4.5:3}" fill="${isLast?'var(--g400)':'var(--surf)'}" stroke="var(--g600)" stroke-width="2"/>
+        <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="10" fill="transparent"><title>${weeks[i].label}: ${weeks[i].delivered} delivered of ${weeks[i].total} placed</title></circle>`;
       }).join('')}
+    </svg>
+    <div style="display:flex;justify-content:space-between;margin-top:6px">
+      ${weeks.map(w=>`<span class="bar-label" style="flex:1;text-align:center">${w.label}</span>`).join('')}
     </div>
-    <div style="display:flex;gap:16px;margin-top:14px;font-size:11.5px;color:var(--muted)">
-      <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--g400);margin-right:6px"></span>Delivered</span>
-      <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--surf3);border:1px solid var(--border);margin-right:6px"></span>All orders placed</span>
+    <div style="display:flex;gap:16px;margin-top:12px;font-size:11.5px;color:var(--muted)">
+      <span><span style="display:inline-block;width:14px;height:2.5px;border-radius:2px;background:var(--g600);margin-right:6px;vertical-align:middle"></span>Delivered</span>
+      <span><span style="display:inline-block;width:14px;height:0;border-top:2px dashed var(--muted);margin-right:6px;vertical-align:middle"></span>All orders placed</span>
     </div>
     ${allZero?'<div style="text-align:center;font-size:12px;color:var(--light);margin-top:8px">No orders in the last 8 weeks.</div>':''}
   `;
