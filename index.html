@@ -2219,7 +2219,24 @@ async function init() {
   else{setOut();go('home');act('nh');}
 }
 
+// Guards against loadProfile() running twice concurrently for the same session.
+// The onAuthStateChange listener and the explicit calls after login()/signup()
+// can both fire at nearly the same moment. If two calls raced while no profile
+// row existed yet, both attempted the self-heal INSERT below — one would
+// succeed, one would hit a duplicate-key error — and whichever call finished
+// LAST would overwrite curProfile with null, showing a false "Profile not
+// found" error and logging the person back out, even though the row was
+// created fine by the other call. This was the cause of the intermittent
+// "406 profile not found" reports on some accounts. Serializing every call
+// onto one in-flight promise removes the race entirely.
+let _loadProfileInFlight=null;
 async function loadProfile(user){
+  if(_loadProfileInFlight)return _loadProfileInFlight;
+  _loadProfileInFlight=_loadProfileImpl(user);
+  try{await _loadProfileInFlight;}
+  finally{_loadProfileInFlight=null;}
+}
+async function _loadProfileImpl(user){
   curUser=user;
   let {data:p,error}=await sb.from('profiles').select('*').eq('id',user.id).single();
   if(error && error.code==='PGRST116'){
@@ -2565,11 +2582,21 @@ const DEMO_PRODUCTS = [
 
 // ── PRODUCTS ──
 async function loadProds(){
-  const {data,error}=await sb.from('products').select('*,profiles(full_name,state,verification_status)').eq('is_active',true).order('created_at',{ascending:false});
-  const liveProds=data||[];
-  // Show demo products alongside live ones (or alone if DB empty)
-  allProds=liveProds.length>0 ? [...liveProds,...DEMO_PRODUCTS] : DEMO_PRODUCTS;
-  renderProds(allProds);
+  try{
+    const {data,error}=await sb.from('products').select('*,profiles(full_name,state,verification_status)').eq('is_active',true).order('created_at',{ascending:false});
+    if(error)Monitor.log('loadProds',error);
+    const liveProds=data||[];
+    // Show demo products alongside live ones (or alone if DB empty or the query failed)
+    allProds=liveProds.length>0 ? [...liveProds,...DEMO_PRODUCTS] : DEMO_PRODUCTS;
+    renderProds(allProds);
+  }catch(e){
+    // A thrown exception (network offline, DNS failure, etc.) used to leave the
+    // loading skeleton stuck forever with no explanation. Now it's logged and
+    // the grid still renders something instead of hanging indefinitely.
+    Monitor.log('loadProds.exception',e);
+    allProds=DEMO_PRODUCTS;
+    renderProds(allProds);
+  }
 }
 
 function getProdImg(p){
