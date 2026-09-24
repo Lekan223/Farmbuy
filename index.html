@@ -359,13 +359,10 @@ tr:hover td{background:var(--surf3) !important}
 .receipt-amt .ra-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .receipt-amt .ra-val{font-family:var(--fd);font-size:1.8rem;font-weight:700;color:var(--g800)}
 .receipt-note{font-size:11px;color:var(--light);margin-top:1rem;line-height:1.6;text-align:center}
-@media print{
-  body *{visibility:hidden}
-  #wdReceiptPrint,#wdReceiptPrint *{visibility:visible}
-  #wdReceiptPrint{position:absolute;top:0;left:0;width:100%;padding:1rem}
-  .modal-bg,.modal{position:static;background:none;box-shadow:none;max-width:none;max-height:none;overflow:visible}
-  .modal-hdr,.mfoot{display:none !important}
-}
+/* Printing the receipt is handled by printReceipt() opening a clean, isolated
+   popup window (see below) — that avoids the fragile "hide the whole page,
+   un-hide one element" approach, which broke when the modal's positioning
+   context changed under print and cut most of the receipt off the page. */
 
 /* ══ MODALS ══ */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(7,25,30,.55);z-index:200;align-items:center;justify-content:center;padding:1rem}
@@ -1944,7 +1941,7 @@ tr:hover td{background:var(--surf3) !important}
       </div>
       <div class="mfoot">
         <button class="btn btn-ghost" onclick="closeModal('wdReceiptMod')">Close</button>
-        <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+        <button class="btn btn-primary" onclick="printReceipt()">Print / Save as PDF</button>
       </div>
     </div>
   </div>
@@ -4115,6 +4112,64 @@ function openWithdrawReceipt(wJson,recipientName){
   document.getElementById('wdrRequested').textContent=w.created_at?new Date(w.created_at).toLocaleString():'—';
   document.getElementById('wdrProcessed').textContent=w.processed_at?new Date(w.processed_at).toLocaleString():'—';
   openModal('wdReceiptMod');
+}
+
+// Prints the receipt in its own clean, isolated popup window rather than
+// trying to print the modal in place. The earlier approach hid the whole
+// page and un-hid just the receipt via CSS, but that broke once the modal's
+// positioning context changed under print — most of the receipt ended up
+// rendered off the printable page and only one row happened to land inside
+// it. A dedicated print window has no such conflict: it's just this receipt
+// and nothing else, so nothing else can interfere with it.
+function printReceipt(){
+  const val=id=>(document.getElementById(id)?.textContent||'—');
+  const rows=[
+    ['Reference',val('wdrRef')],
+    ['Status',val('wdrStatus')],
+    ['Recipient',val('wdrRecipient')],
+    ['Bank',val('wdrBank')],
+    ['Account Number',val('wdrAccNum')],
+    ['Account Name',val('wdrAccName')],
+    ['Requested',val('wdrRequested')],
+    ['Processed',val('wdrProcessed')]
+  ];
+  const html=`<!DOCTYPE html><html><head><meta charset="utf-8"><title>AgroLink Withdrawal Receipt</title>
+    <style>
+      body{font-family:-apple-system,'DM Sans',Arial,sans-serif;color:#07191E;background:#fff;margin:0;padding:32px;max-width:420px}
+      .hdr{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+      .hdr .name{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:18px}
+      .hdr .sub{font-size:12px;color:#5a7a80}
+      .amt-lbl{font-size:12px;color:#5a7a80;margin-bottom:4px}
+      .amt-val{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:32px;margin-bottom:24px}
+      .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e5eceb;font-size:13.5px}
+      .row span:first-child{color:#5a7a80}
+      .row span:last-child{font-weight:600;text-align:right}
+      .note{font-size:11px;color:#5a7a80;margin-top:20px;line-height:1.5}
+      @media print{body{padding:0}}
+    </style></head><body>
+    <div class="hdr">
+      <svg width="30" height="30" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="22" height="22" rx="5" fill="#02F5A1"/>
+        <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/>
+        <path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div><div class="name">AgroLink</div><div class="sub">Withdrawal Receipt</div></div>
+    </div>
+    <div class="amt-lbl">Amount</div>
+    <div class="amt-val">${val('wdrAmount')}</div>
+    ${rows.map(([l,v])=>`<div class="row"><span>${l}</span><span>${v}</span></div>`).join('')}
+    <div class="note">This receipt confirms AgroLink approved this withdrawal request. It is not proof that a bank transfer has completed — please confirm final receipt of funds with your bank statement.</div>
+  </body></html>`;
+  const win=window.open('','_blank','width=460,height=720');
+  if(!win){toast('Please allow pop-ups for this site to print the receipt.',true);return;}
+  win.document.open();win.document.write(html);win.document.close();
+  let printed=false;
+  const doPrint=()=>{if(printed)return;printed=true;win.focus();win.print();};
+  win.onload=doPrint;
+  // Fallback in case onload doesn't fire in time on some browsers
+  setTimeout(()=>{try{doPrint();}catch(e){}},400);
 }
 
 // ── IN-APP MESSAGING ──
