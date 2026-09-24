@@ -1526,6 +1526,35 @@ tr:hover td{background:var(--surf3) !important}
   </div>
 </div>
 
+<!-- ══ SET NEW PASSWORD (landed here from an emailed reset link) ══ -->
+<div class="page" id="page-resetpw">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div style="text-align:center;margin-bottom:1rem"><div class="logo" style="width:50px;height:50px;font-size:24px;margin:0 auto .5rem">
+        <svg width="28" height="28" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="white" opacity="0.9"/>
+          <path d="M11 20V10" stroke="#217a43" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11 14C11 14 8 11 5.5 11" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div></div>
+      <div class="auth-title">Set a New Password</div>
+      <div class="auth-sub" id="resetPwSub">Choose a new password for your account.</div>
+      <div class="err-msg" id="resetPwErr"></div>
+      <div id="resetPwFormWrap">
+        <div class="fg"><label class="fl">New Password</label><input class="fc" type="password" id="resetPwNew" placeholder="At least 8 characters" autocomplete="new-password"/></div>
+        <div class="fg"><label class="fl">Confirm New Password</label><input class="fc" type="password" id="resetPwConfirm" placeholder="Re-enter password" autocomplete="new-password"/></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--rs);padding:12px" onclick="submitPasswordReset()" id="resetPwBtn">Set New Password</button>
+        <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:1rem"><span class="link" onclick="cancelPasswordReset()">Cancel and sign in normally</span></p>
+      </div>
+      <div id="resetPwSuccessWrap" style="display:none;text-align:center">
+        <div class="ok-msg show" style="margin-bottom:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> Password updated. Please sign in with your new password.</div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:var(--rs);padding:12px" onclick="go('login')">Continue to Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ ADMIN LOGIN ══ -->
 <div class="page" id="page-adminlogin">
   <div class="auth-wrap" style="background:#1a1a12;min-height:100vh;position:fixed;inset:0;z-index:150;overflow-y:auto">
@@ -2190,6 +2219,14 @@ const SessionTimer = {
 
 // ── STATE ──
 let curUser=null, curProfile=null, curProd=null, allProds=[], regRole='farmer';
+// A password-reset email link lands back on this same page with `type=recovery`
+// in the URL. Supabase turns that into a real, working session automatically —
+// which is exactly the danger: without this flag, that session would look
+// identical to an ordinary login and the person would land straight in their
+// dashboard, having never actually set a new password. Checked synchronously
+// here (before any async auth calls) so there's no timing window where a
+// recovery session could be mistaken for a normal one.
+let inPasswordRecovery = /type=recovery/.test(window.location.hash) || /type=recovery/.test(window.location.search);
 
 // ── INIT ──
 async function init() {
@@ -2200,10 +2237,20 @@ async function init() {
   loadProds(); loadStats();
 
   sb.auth.onAuthStateChange(async(event,session)=>{
+    if(event==='PASSWORD_RECOVERY'){
+      // The person followed a password-reset email link. Supabase just created
+      // a temporary recovery session from it — this is NOT a login, and must
+      // never be treated as one. Route to the "set a new password" screen and
+      // stop; nothing else in this handler should run for this event.
+      inPasswordRecovery=true;
+      go('resetpw');
+      return;
+    }
     if(event==='SIGNED_IN'&&session){
       // Only handle redirect here for session restores (page refresh).
       // When coming from login(), login() calls loadProfile+redirect directly
       // to avoid a race where curProfile is null at the time this fires.
+      if(inPasswordRecovery)return; // never auto-redirect into the dashboard mid-recovery
       if(!curUser){
         await loadProfile(session.user);
         redirect();
@@ -2214,8 +2261,10 @@ async function init() {
     }
   });
 
+  if(inPasswordRecovery){go('resetpw');}
   const {data:{session}}=await sb.auth.getSession();
-  if(session){await loadProfile(session.user);redirect();}
+  if(inPasswordRecovery){/* already routed to resetpw above — do not also redirect into the dashboard */}
+  else if(session){await loadProfile(session.user);redirect();}
   else{setOut();go('home');act('nh');}
 }
 
@@ -2385,7 +2434,7 @@ function go(id){
   const pageButtonDefaults={
     loginBtn:'Sign In', regBtn:'Create Account', forgotBtn:'Send Reset Link',
     verifyBtn:'Verify & Go to Dashboard', admLoginBtn:'Access Admin Panel',
-    contBtn:'Send Message'
+    contBtn:'Send Message', resetPwBtn:'Set New Password'
   };
   Object.entries(pageButtonDefaults).forEach(([btnId,defaultText])=>{
     const btn=document.getElementById(btnId);
@@ -4787,6 +4836,44 @@ async function forgotPwd(){
   if(error){Monitor.log('forgotPwd', error);errEl.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg> '+error.message;errEl.classList.add('show');return;}
   // Always show success even if email doesn't exist (prevents email enumeration)
   okEl.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg> If that email exists, a reset link has been sent.';okEl.classList.add('show');
+}
+
+// Called from the "Set a New Password" screen, which is only ever shown when
+// the person has landed here via an emailed reset link (a recovery session).
+// This is the step that was missing before: the link used to just leave them
+// signed in with their OLD password still valid and nothing actually changed.
+// Now, setting a new password here is required before they get any further
+// access — and once it's set, we sign them out again and send them to a
+// normal login, so there's no ambiguity about whether they're "in" yet.
+async function submitPasswordReset(){
+  const pw1=document.getElementById('resetPwNew').value;
+  const pw2=document.getElementById('resetPwConfirm').value;
+  const errEl=document.getElementById('resetPwErr');
+  errEl.classList.remove('show');
+  const pwErr=Validate.password(pw1);
+  if(pwErr){errEl.textContent=pwErr;errEl.classList.add('show');return;}
+  if(pw1!==pw2){errEl.textContent='Passwords do not match.';errEl.classList.add('show');return;}
+  const btn=document.getElementById('resetPwBtn');btn.textContent='Updating...';btn.disabled=true;
+  const {error}=await sb.auth.updateUser({password:pw1});
+  if(error){
+    Monitor.log('submitPasswordReset',error);
+    btn.textContent='Set New Password';btn.disabled=false;
+    errEl.textContent='Could not update password: '+error.message;errEl.classList.add('show');
+    return;
+  }
+  inPasswordRecovery=false;
+  await sb.auth.signOut();
+  document.getElementById('resetPwFormWrap').style.display='none';
+  document.getElementById('resetPwSuccessWrap').style.display='block';
+}
+
+// Lets someone back out of the reset screen instead of being stuck there with
+// no way forward — signs out of the temporary recovery session and returns
+// to a normal login.
+async function cancelPasswordReset(){
+  inPasswordRecovery=false;
+  await sb.auth.signOut();
+  go('login');
 }
 
 // ── ADMIN LOGIN ──
