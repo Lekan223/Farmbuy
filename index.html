@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover, interactive-widget=resizes-content"/>
 <title>AgroLink — Direct-to-Market Platform for Farmers & Buyers</title>
 <meta name="description" content="AgroLink connects farmers directly with buyers across Nigeria — no middlemen. Farmers list fresh produce, buyers order and pay securely with escrow protection."/>
 <meta name="google-site-verification" content="Hz7RVCmo97KL7KtCC6qfLIIxclHfB0L_kGE2lB_vMZk" />
@@ -111,27 +111,27 @@ nav.scrolled{box-shadow:var(--shadow-sm)}
 .brandname{font-family:var(--fd);font-size:1.28rem;font-weight:700;color:var(--g800)}
 .navlinks{display:flex;gap:.25rem}
 .navlinks a{padding:8px 16px;border-radius:20px;font-size:14px;font-weight:500;text-decoration:none;color:var(--muted);cursor:pointer;transition:color .15s,background-color .15s;border:1px solid transparent}
-.navlinks a:hover{color:var(--g600);background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.navlinks a:hover{color:var(--g600);background:var(--g50)}}
 .navlinks a.active{color:var(--g800);background:var(--g100)}
 .navact{display:flex;align-items:center;gap:10px}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 19px;border-radius:20px;font-family:var(--fb);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:background-color .15s,border-color .15s,color .15s,transform .1s;text-decoration:none}
 .btn:active{transform:scale(.96)}
 .btn-ghost{background:transparent;border-color:var(--border2);color:var(--text)}
-.btn-ghost:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.btn-ghost:hover{background:var(--surf3)}}
 .btn-primary{background:var(--g400);color:#07191E}
-.btn-primary:hover{background:var(--g600)}
+@media(hover:hover) and (pointer:fine){.btn-primary:hover{background:var(--g600)}}
 .btn-sm{padding:6px 14px;font-size:13px}
 .btn-danger{background:var(--r50);color:var(--r400);border-color:var(--r400)}
-.btn-danger:hover{background:var(--r400);color:#fff}
+@media(hover:hover) and (pointer:fine){.btn-danger:hover{background:var(--r400);color:#fff}}
 .btn-amber{background:var(--a50);color:var(--a600);border-color:var(--a400)}
-.btn-amber:hover{background:var(--a400);color:#fff}
+@media(hover:hover) and (pointer:fine){.btn-amber:hover{background:var(--a400);color:#fff}}
 .chip{display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 12px 4px 4px;border-radius:20px;border:1px solid var(--border);transition:background-color .15s}
-.chip:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.chip:hover{background:var(--surf3)}}
 .avatar{width:30px;height:30px;border-radius:50%;background:var(--g400);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#07191E;flex-shrink:0}
 .btn-dm{background:none;border:1px solid var(--border2);border-radius:20px;padding:6px 11px;cursor:pointer;font-size:15px;transition:background-color .15s;color:var(--text);margin-right:6px;display:flex;align-items:center;gap:4px}
-.btn-dm:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.btn-dm:hover{background:var(--surf3)}}
 .cart-btn{position:relative;background:none;border:1px solid var(--border2);border-radius:20px;padding:6px 13px;cursor:pointer;transition:background-color .15s;color:var(--text);display:flex;align-items:center;gap:5px;font-family:var(--fb);font-size:13px;font-weight:500;margin-right:4px}
-.cart-btn:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.cart-btn:hover{background:var(--surf3)}}
 .cart-badge{position:absolute;top:-5px;right:-5px;background:var(--r400);color:#fff;width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:700;display:none;align-items:center;justify-content:center}
 .cart-badge.show{display:flex}
 .notif-badge{position:absolute;top:3px;right:3px;background:var(--r400);color:#fff;min-width:15px;height:15px;padding:0 3px;border-radius:8px;font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1}
@@ -148,7 +148,7 @@ nav.scrolled{box-shadow:var(--shadow-sm)}
 .mob-menu{display:none;position:fixed;inset:0;top:calc(66px + env(safe-area-inset-top,0));background:var(--surf);z-index:99;padding:1.25rem;flex-direction:column;gap:.15rem;border-top:1px solid var(--border);overflow-y:auto;opacity:0;transform:translateY(-6px);transition:opacity .2s,transform .2s}
 .mob-menu.open{display:flex;opacity:1;transform:translateY(0)}
 .mob-menu a{padding:14px 16px;border-radius:var(--rs);font-size:16px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:1px solid var(--border);display:block;transition:background-color .15s}
-.mob-menu a:hover{background:var(--g50);color:var(--g800)}
+@media(hover:hover) and (pointer:fine){.mob-menu a:hover{background:var(--g50);color:var(--g800)}}
 .mob-auth{display:flex;gap:10px;padding:1rem 0}
 .mob-user{padding:.75rem 0;border-bottom:1px solid var(--border);margin-bottom:.5rem;display:none}
 .mob-user-name{font-weight:600;font-size:15px}
@@ -174,9 +174,9 @@ nav.scrolled{box-shadow:var(--shadow-sm)}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 .hero .btn{padding:11px 20px}
 .btn-white{background:#fff;color:var(--g800);font-weight:600}
-.btn-white:hover{background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.btn-white:hover{background:var(--g50)}}
 .btn-outline-w{background:transparent;border:1.5px solid rgba(255,255,255,.45);color:#fff}
-.btn-outline-w:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+@media(hover:hover) and (pointer:fine){.btn-outline-w:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
 .stat-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:1.15rem .5rem;text-align:center}
 .stat-num{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:#fff}
@@ -193,7 +193,7 @@ nav.scrolled{box-shadow:var(--shadow-sm)}
 .sec-sub{color:var(--muted);font-size:.95rem;margin-bottom:2.5rem;max-width:560px}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
 .feat-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;transition:border-color .2s,background-color .2s,transform .2s}
-.feat-card:hover{border-color:var(--g100);background:var(--g50);transform:translateY(-3px)}
+@media(hover:hover) and (pointer:fine){.feat-card:hover{border-color:var(--g100);background:var(--g50);transform:translateY(-3px)}}
 .feat-icon{width:42px;height:42px;border-radius:var(--rs);background:var(--g50);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem;color:var(--g800)}
 .feat-title{font-weight:600;margin-bottom:6px}
 .feat-desc{font-size:13px;color:var(--muted);line-height:1.6}
@@ -212,19 +212,19 @@ nav.scrolled{box-shadow:var(--shadow-sm)}
 .filter-sheet-hdr{display:none}
 .filter-apply-btn{display:none}
 .modal-x{background:none;border:none;cursor:pointer;font-size:18px;color:var(--muted);padding:2px 6px;border-radius:6px;transition:background-color .15s}
-.modal-x:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.modal-x:hover{background:var(--surf3)}}
 .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
 .prod-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
-.prod-card:hover{border-color:var(--g200,var(--g100));box-shadow:var(--shadow-sm);transform:translateY(-3px)}
+@media(hover:hover) and (pointer:fine){.prod-card:hover{border-color:var(--g200,var(--g100));box-shadow:var(--shadow-sm);transform:translateY(-3px)}}
 .prod-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:var(--surf3);overflow:hidden;position:relative}
 .prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-.prod-card:hover .prod-img img{transform:scale(1.04)}
+@media(hover:hover) and (pointer:fine){.prod-card:hover .prod-img img{transform:scale(1.04)}}
 .prod-img-placeholder{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;height:100%;justify-content:center;background:var(--g50)}
 .prod-img-placeholder span:first-child{font-size:3.25rem}
 .prod-img-placeholder span:last-child{font-size:10px;color:var(--light);text-transform:uppercase;letter-spacing:.06em}
 .img-edit-btn{display:none;position:absolute;top:8px;right:8px;background:rgba(7,25,30,.68);color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;transition:background-color .15s}
 .prod-img:hover .img-edit-btn{display:block}
-.img-edit-btn:hover{background:rgba(7,25,30,.85)}
+@media(hover:hover) and (pointer:fine){.img-edit-btn:hover{background:rgba(7,25,30,.85)}}
 .prod-body{padding:1.1rem}
 .prod-name{font-weight:600;font-size:1rem;margin-bottom:4px}
 .prod-farmer{font-size:12px;color:var(--light);margin-bottom:8px}
@@ -251,7 +251,7 @@ nav.scrolled{box-shadow:var(--shadow-sm)}
 .sidebar{background:var(--surf);border-right:1px solid var(--border);padding:1.5rem 1rem;position:sticky;top:calc(66px + env(safe-area-inset-top,0));height:calc(100vh - 66px - env(safe-area-inset-top,0));overflow-y:auto}
 .sb-title{font-size:10px;font-weight:600;color:var(--light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;padding-left:10px}
 .sb-link{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:var(--rs);font-size:14px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:background-color .15s,color .15s;margin-bottom:2px;border-left:3px solid transparent}
-.sb-link:hover{background:var(--g50);color:var(--g600)}
+@media(hover:hover) and (pointer:fine){.sb-link:hover{background:var(--g50);color:var(--g600)}}
 .sb-link.active{background:var(--g100);color:var(--g800);border-left-color:var(--g400)}
 .dash-main{background:var(--surf2);padding:2rem;overflow-y:auto}
 .dpanel{display:none}
@@ -268,7 +268,7 @@ th{background:var(--surf3);padding:10px 16px;text-align:left;font-size:12px;font
 td{padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}
 tr:last-child td{border-bottom:none}
 tr{transition:background-color .12s}
-tr:hover td{background:var(--surf3) !important}
+@media(hover:hover) and (pointer:fine){tr:hover td{background:var(--surf3) !important}}
 .status{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500}
 .status::before{content:'';width:6px;height:6px;border-radius:50%;display:inline-block}
 .sp{background:#fff8e6;color:#7a5000}.sp::before{background:var(--a400)}
@@ -305,7 +305,7 @@ tr:hover td{background:var(--surf3) !important}
 .verify-status-banner.vs-approved{background:var(--g100);color:var(--g800)}
 .verify-status-banner.vs-rejected{background:var(--r50);color:#9b2c28}
 .upload-box{border:2px dashed var(--border2);border-radius:var(--rs);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s,background-color .2s;background:var(--surf2)}
-.upload-box:hover{border-color:var(--g400);background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.upload-box:hover{border-color:var(--g400);background:var(--g50)}}
 .upload-box.has-file{border-color:var(--g400);border-style:solid}
 .upload-preview{width:100%;max-height:160px;object-fit:contain;border-radius:var(--rs);margin-top:8px}
 .review-doc-img{width:100%;max-height:280px;object-fit:contain;border-radius:var(--rs);background:var(--e100);cursor:zoom-in}
@@ -326,7 +326,7 @@ tr:hover td{background:var(--surf3) !important}
 .pstep-panel{display:none}
 .pstep-panel.active{display:block}
 .img-upload-area{border:2px dashed var(--border2);border-radius:var(--rs);padding:1.25rem;cursor:pointer;text-align:center;transition:border-color .2s,background-color .2s;background:var(--surf2)}
-.img-upload-area:hover{border-color:var(--g400);background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.img-upload-area:hover{border-color:var(--g400);background:var(--g50)}}
 .img-preview-placeholder{display:flex;flex-direction:column;align-items:center;gap:6px}
 .img-upload-area img{width:100%;max-height:180px;object-fit:cover;border-radius:var(--rs)}
 
@@ -335,7 +335,7 @@ tr:hover td{background:var(--surf3) !important}
 .needs-attn-hdr{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--r400);margin-bottom:.75rem;font-size:14px}
 .needs-attn-list{display:flex;flex-direction:column;gap:6px}
 .needs-attn-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:var(--surf2);border:1px solid var(--border);border-radius:var(--rs);padding:9px 12px;font-family:var(--fb);font-size:13.5px;color:var(--text);cursor:pointer;transition:background-color .15s}
-.needs-attn-item:hover{background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.needs-attn-item:hover{background:var(--g50)}}
 .needs-attn-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .needs-attn-arrow{margin-left:auto;color:var(--light)}
 
@@ -378,7 +378,7 @@ tr:hover td{background:var(--surf3) !important}
 .modal-hdr{padding:1.5rem 1.5rem .75rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .modal-title{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--g800)}
 .modal-close{background:none;border:none;cursor:pointer;font-size:22px;color:var(--muted);padding:2px 6px;border-radius:6px;transition:background-color .15s}
-.modal-close:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.modal-close:hover{background:var(--surf3)}}
 .modal-body{padding:1.5rem}
 .fg{margin-bottom:1.25rem}
 .fl{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:5px}
@@ -397,7 +397,7 @@ tr:hover td{background:var(--surf3) !important}
 .role-btn.active{background:var(--surf);color:var(--g800);box-shadow:var(--shadow-sm)}
 [data-theme="dark"] .role-btn.active{background:var(--g400);color:#07191E}
 .link{color:var(--g600);cursor:pointer;font-weight:500}
-.link:hover{text-decoration:underline}
+@media(hover:hover) and (pointer:fine){.link:hover{text-decoration:underline}}
 .err-msg{background:var(--r50);color:var(--r400);border:1px solid var(--r400);border-radius:var(--rs);padding:.75rem 1rem;font-size:13px;margin-bottom:1rem;display:none}
 .err-msg.show{display:block}
 .ok-msg{background:var(--g50);color:var(--g800);border:1px solid var(--g100);border-radius:var(--rs);padding:.75rem 1rem;font-size:13px;margin-bottom:1rem;display:none}
@@ -418,7 +418,8 @@ tr:hover td{background:var(--surf3) !important}
 .mbn-more-sheet{display:none;position:absolute;bottom:100%;left:.75rem;right:.75rem;margin-bottom:.5rem;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:.4rem;z-index:95}
 .mbn-more-sheet.show{display:block}
 .mbn-more-item{display:flex;align-items:center;gap:10px;width:100%;padding:12px 14px;border:none;background:none;font-size:14px;font-weight:500;font-family:var(--fb);color:var(--muted);cursor:pointer;border-radius:var(--rs);text-align:left;transition:background-color .15s}
-.mbn-more-item:hover,.mbn-more-item.active{background:var(--g50);color:var(--g800)}
+.mbn-more-item.active{background:var(--g50);color:var(--g800)}
+@media(hover:hover) and (pointer:fine){.mbn-more-item:hover{background:var(--g50);color:var(--g800)}}
 
 /* ══ TOASTS ══ */
 .toast-area{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;display:flex;flex-direction:column;gap:8px}
@@ -455,7 +456,7 @@ tr:hover td{background:var(--surf3) !important}
 .cart-hdr{padding:1.25rem 1.5rem;padding-top:calc(1.25rem + env(safe-area-inset-top,0));border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .cart-title{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:var(--g800)}
 .cart-close{background:none;border:none;cursor:pointer;font-size:20px;color:var(--muted);padding:4px 8px;border-radius:6px;transition:background-color .15s}
-.cart-close:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){.cart-close:hover{background:var(--surf3)}}
 .cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
 .cart-empty{text-align:center;padding:3rem 1rem;color:var(--light)}
 .cart-empty-icon{font-size:3rem;margin-bottom:.75rem}
@@ -466,14 +467,14 @@ tr:hover td{background:var(--surf3) !important}
 .cart-item-info{flex:1;min-width:0}
 .cart-item-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cart-item-farmer{font-size:11px;color:var(--light);margin-bottom:4px;cursor:pointer}
-.cart-item-farmer:hover{color:var(--g600);text-decoration:underline}
+@media(hover:hover) and (pointer:fine){.cart-item-farmer:hover{color:var(--g600);text-decoration:underline}}
 .cart-item-price{font-size:13px;font-weight:600;color:var(--g600)}
 .cart-qty{display:flex;align-items:center;gap:6px;margin-top:5px}
 .cart-qty button{width:24px;height:24px;border-radius:50%;border:1px solid var(--border2);background:var(--surf2);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background-color .15s;font-weight:600;color:var(--text)}
-.cart-qty button:hover{background:var(--g50);border-color:var(--g400);color:var(--g600)}
+@media(hover:hover) and (pointer:fine){.cart-qty button:hover{background:var(--g50);border-color:var(--g400);color:var(--g600)}}
 .cart-qty span{font-size:13px;font-weight:600;min-width:20px;text-align:center}
 .cart-remove{background:none;border:none;cursor:pointer;color:var(--light);font-size:18px;padding:4px;border-radius:4px;transition:color .15s;flex-shrink:0}
-.cart-remove:hover{color:var(--r400)}
+@media(hover:hover) and (pointer:fine){.cart-remove:hover{color:var(--r400)}}
 .cart-foot{padding:1.25rem 1.5rem;border-top:1px solid var(--border);flex-shrink:0}
 .cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
 .cart-total-label{color:var(--muted);font-size:14px}
@@ -482,7 +483,7 @@ tr:hover td{background:var(--surf3) !important}
 .cart-addr{width:100%;padding:9px 12px;border-radius:var(--rs);border:1px solid var(--border2);font-family:var(--fb);font-size:13px;color:var(--text);background:var(--surf);outline:none;resize:vertical;margin-bottom:.75rem;transition:border-color .15s}
 .cart-addr:focus{border-color:var(--g400);box-shadow:0 0 0 3px rgba(2,245,161,.15)}
 .cart-checkout-btn{width:100%;padding:12px;border-radius:var(--rs);background:var(--g400);color:#07191E;border:none;font-family:var(--fb);font-size:15px;font-weight:600;cursor:pointer;transition:background-color .15s,transform .1s}
-.cart-checkout-btn:hover{background:var(--g600)}
+@media(hover:hover) and (pointer:fine){.cart-checkout-btn:hover{background:var(--g600)}}
 .cart-checkout-btn:active{transform:scale(.98)}
 .cart-checkout-btn:disabled{opacity:.55;cursor:not-allowed}
 
@@ -506,7 +507,7 @@ tr:hover td{background:var(--surf3) !important}
 .farmer-section{max-width:860px;margin:1.5rem auto 0;padding:0 1.75rem}
 .farmer-tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
 .farmer-tab{padding:10px 18px;border:none;background:none;cursor:pointer;font-family:var(--fb);font-size:14px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s,border-color .15s}
-.farmer-tab:hover{color:var(--g600)}
+@media(hover:hover) and (pointer:fine){.farmer-tab:hover{color:var(--g600)}}
 .farmer-tab.active{color:var(--g800);border-bottom-color:var(--g400)}
 .farmer-tab-panel{display:none}
 .farmer-tab-panel.active{display:block}
@@ -520,11 +521,12 @@ tr:hover td{background:var(--surf3) !important}
 .write-review-title{font-weight:600;margin-bottom:.75rem;font-size:15px}
 .star-picker{display:flex;gap:6px;margin-bottom:.75rem}
 .star-pick{font-size:24px;cursor:pointer;color:#e5e5e5;transition:color .15s;user-select:none}
-.star-pick:hover,.star-pick.active{color:#f5a623}
+.star-pick.active{color:#f5a623}
+@media(hover:hover) and (pointer:fine){.star-pick:hover{color:#f5a623}}
 .no-reviews{text-align:center;padding:2rem;color:var(--light)}
 .add-to-cart-btn{display:flex;align-items:center;gap:6px;width:100%;padding:9px 14px;border-radius:var(--rs);background:var(--g50);color:var(--g800);border:1.5px solid var(--g100);font-family:var(--fb);font-size:13px;font-weight:600;cursor:pointer;transition:background-color .15s,color .15s,border-color .15s,transform .1s;justify-content:center;margin-top:8px}
 .add-to-cart-btn:active{transform:scale(.97)}
-.add-to-cart-btn:hover{background:var(--g400);color:#07191E;border-color:var(--g400)}
+@media(hover:hover) and (pointer:fine){.add-to-cart-btn:hover{background:var(--g400);color:#07191E;border-color:var(--g400)}}
 .add-to-cart-btn.added{background:var(--g400);color:#07191E;border-color:var(--g400)}
 .bal-card{background:linear-gradient(150deg,#07191E 0%,#0f3d4a 100%);border-radius:var(--r);padding:1.5rem;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .bal-lbl{font-size:12px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
@@ -538,11 +540,11 @@ tr:hover td{background:var(--surf3) !important}
 .chat-input-row{display:flex;gap:8px;padding:.75rem;border-top:1px solid var(--border)}
 .chat-input-row .fc{flex:1;margin:0}
 .conv-item{display:flex;align-items:center;gap:10px;padding:.9rem 1rem;border:1px solid var(--border);border-radius:var(--rs);cursor:pointer;margin-bottom:8px;transition:background-color .15s}
-.conv-item:hover{background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.conv-item:hover{background:var(--g50)}}
 .conv-item .unread-dot{width:8px;height:8px;border-radius:50%;background:var(--a400);margin-left:auto;flex-shrink:0}
 .notif-item{display:flex;gap:10px;padding:.85rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background-color .15s}
 .notif-item:last-child{border-bottom:none}
-.notif-item:hover{background:var(--g50)}
+@media(hover:hover) and (pointer:fine){.notif-item:hover{background:var(--g50)}}
 .notif-dot{width:8px;height:8px;border-radius:50%;background:var(--g400);flex-shrink:0;margin-top:5px}
 .notif-item.read .notif-dot{background:transparent}
 .notif-title{font-size:13px;font-weight:600;color:var(--text)}
@@ -553,21 +555,21 @@ tr:hover td{background:var(--surf3) !important}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--e100);border-radius:10px}
-::-webkit-scrollbar-thumb:hover{background:var(--e400)}
+@media(hover:hover) and (pointer:fine){::-webkit-scrollbar-thumb:hover{background:var(--e400)}}
 ::selection{background:var(--g100);color:var(--g800)}
 
 /* ══ DARK MODE FIXES ══ */
 [data-theme="dark"] .hero{filter:brightness(.94)}
 [data-theme="dark"] .navlinks a{color:var(--muted)}
-[data-theme="dark"] .navlinks a:hover{color:var(--g600);background:var(--g50)}
+@media(hover:hover) and (pointer:fine){[data-theme="dark"] .navlinks a:hover{color:var(--g600);background:var(--g50)}}
 [data-theme="dark"] .navlinks a.active{color:var(--g800);background:var(--g100)}
 [data-theme="dark"] .btn-ghost{color:var(--text);border-color:var(--border2)}
-[data-theme="dark"] .btn-ghost:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){[data-theme="dark"] .btn-ghost:hover{background:var(--surf3)}}
 [data-theme="dark"] .chip{border-color:var(--border2)}
 [data-theme="dark"] .mbn{color:var(--muted)}
 [data-theme="dark"] .mbn.active{color:var(--g600)}
 [data-theme="dark"] .btn-dm{color:var(--text);border-color:var(--border2)}
-[data-theme="dark"] .btn-dm:hover{background:var(--surf3)}
+@media(hover:hover) and (pointer:fine){[data-theme="dark"] .btn-dm:hover{background:var(--surf3)}}
 [data-theme="dark"] .role-btn{color:var(--muted)}
 [data-theme="dark"] .role-toggle{background:var(--surf2);border:1px solid var(--border2)}
 [data-theme="dark"] .modal-bg{background:rgba(0,0,0,.7)}
@@ -640,6 +642,207 @@ tr:hover td{background:var(--surf3) !important}
   #page-admin .adm-dash-header{flex-direction:column;align-items:stretch}
   #page-admin .adm-dash-header h2{font-size:1.35rem}
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   POLISH PASS — contrast, type, touch, brand consistency
+   (kept in one block at the end so it is easy to review or revert)
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --gt:#00744a;               /* green for TEXT on light surfaces (5.8:1) — --g600 is only ~2:1 on white */
+  --focus:#07191E;
+  --light:#4d6c73;            /* was #5a7a80 */
+  --nav-bg:rgba(255,255,255,.86);
+  --r-lg:20px;
+  --shadow-md:0 1px 2px rgba(7,25,30,.05),0 10px 28px rgba(7,25,30,.09);
+}
+[data-theme="dark"]{
+  --gt:#02F5A1;
+  --focus:#02F5A1;
+  --light:#6c959e;            /* was #3a6070 — about 2.3:1 on dark surfaces */
+  --nav-bg:rgba(7,25,30,.86);
+  --shadow-md:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.45);
+}
+
+/* --- platform layer (feel native on phones) --- */
+html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;min-height:100dvh}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+button,a,[role="button"],.btn,.mbn,.sb-link,.prod-card{touch-action:manipulation}
+button,.btn,.mbn,.chip,.sb-link,.role-btn,.farmer-tab,.navlinks a,.mob-menu a,.brand{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.cart-body,.chat-msgs,.modal,.filter-fields,.mob-menu,.mbn-more-sheet{overscroll-behavior:contain}
+@media(pointer:coarse){
+  input,textarea,select,.fc,.cart-addr,.filter-bar input,.filter-bar select{font-size:16px}
+  .btn{min-height:44px}.btn-sm{min-height:40px}
+  .cart-qty button{width:32px;height:32px}
+}
+
+/* --- typography --- */
+h1,h2,.sec-title,.auth-title,.modal-title,.esr-title,.cta-title{text-wrap:balance}
+.sec-sub,.feat-desc,.hero p,.cta-sub{text-wrap:pretty}
+/* Playfair defaults to old-style figures (digits dip below the baseline) — bad for prices and stats */
+.stat-num,.met-val,.prod-price,.cart-total-val,.bal-val,.farmer-stat-val,.ra-val,.farmer-name{font-variant-numeric:lining-nums}
+td,th,.cart-item-price,.receipt-row .rv{font-variant-numeric:tabular-nums}
+.sec-title{letter-spacing:-.012em}
+.sec-sub{font-size:1rem}
+.section{padding-top:5rem;padding-bottom:5rem}
+/* small all-caps labels read as template chrome; sentence case is calmer and easier to scan */
+.stat-label,.met-label,.farmer-stat-lbl,.bal-lbl,.receipt-amt .ra-lbl{text-transform:none;letter-spacing:0;font-size:12.5px}
+.sb-title{text-transform:none;letter-spacing:.01em;font-size:11.5px}
+th{text-transform:none;letter-spacing:.01em;font-size:12.5px}
+
+/* --- green text that is actually readable --- */
+.prod-price,.link,.cart-item-price,.mbn.active,[data-theme="dark"] .mbn.active{color:var(--gt)}
+#page-admin .metrics .met:first-child .met-val{color:var(--gt)}
+.pstep-dot.active{background:var(--g400);border-color:var(--g400);color:#07191E}
+.pstep-track-fill{background:var(--g400)}
+@media(hover:hover) and (pointer:fine){
+  .navlinks a:hover,.sb-link:hover,.farmer-tab:hover,.cart-item-farmer:hover,.cart-qty button:hover{color:var(--gt)}
+  [data-theme="dark"] .navlinks a:hover{color:var(--gt)}
+}
+
+/* --- nav --- */
+nav{-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px)}
+.brandname{letter-spacing:-.01em}
+.navlinks a{padding:8px 15px}
+.navlinks a.active{font-weight:600}
+
+/* --- buttons --- */
+.btn{justify-content:center;min-height:40px}
+.btn-sm{min-height:34px}
+.btn-primary{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 2px rgba(7,25,30,.14)}
+.btn:disabled,.btn[disabled]{opacity:.55;cursor:not-allowed;pointer-events:none}
+
+/* --- hero: one deliberate moment --- */
+.hero{
+  min-height:580px;
+  background:
+    radial-gradient(55% 75% at 88% -5%,rgba(2,245,161,.16),transparent 62%),
+    linear-gradient(160deg,#07191E 0%,#0a2730 55%,#0d3540 100%);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 700' fill='none' stroke='%2302F5A1' stroke-opacity='.16' stroke-width='1.2'%3E%3Cpath d='M-40 170 C 150 110, 300 255, 470 162 S 770 85, 950 156'/%3E%3Cpath d='M-40 200 C 150 124, 300 281, 470 192 S 770 119, 950 186'/%3E%3Cpath d='M-40 230 C 150 145, 300 301, 470 222 S 770 159, 950 216'/%3E%3Cpath d='M-40 260 C 150 178, 300 317, 470 252 S 770 203, 950 246'/%3E%3Cpath d='M-40 290 C 150 222, 300 333, 470 282 S 770 247, 950 276'/%3E%3Cpath d='M-40 320 C 150 269, 300 351, 470 312 S 770 289, 950 306'/%3E%3Cpath d='M-40 350 C 150 312, 300 375, 470 342 S 770 325, 950 336'/%3E%3Cpath d='M-40 380 C 150 345, 300 407, 470 372 S 770 353, 950 366'/%3E%3Cpath d='M-40 410 C 150 366, 300 445, 470 402 S 770 375, 950 396'/%3E%3Cpath d='M-40 440 C 150 380, 300 489, 470 432 S 770 391, 950 426'/%3E%3Cpath d='M-40 470 C 150 394, 300 534, 470 462 S 770 406, 950 456'/%3E%3Cpath d='M-40 500 C 150 415, 300 576, 470 492 S 770 424, 950 486'/%3E%3Cpath d='M-40 530 C 150 449, 300 614, 470 522 S 770 446, 950 516'/%3E%3Cpath d='M-40 560 C 150 492, 300 644, 470 552 S 770 476, 950 546'/%3E%3Cpath d='M-40 590 C 150 539, 300 668, 470 582 S 770 512, 950 576'/%3E%3C/svg%3E") no-repeat right -140px center/980px auto;
+  -webkit-mask-image:linear-gradient(90deg,transparent 8%,#000 60%);mask-image:linear-gradient(90deg,transparent 8%,#000 60%);
+}
+.hero-inner{grid-template-columns:1.15fr .85fr}
+.hero h1{font-size:clamp(2.5rem,4.6vw,3.75rem);line-height:1.08;letter-spacing:-.018em}
+.hero p{font-size:1.08rem}
+.hero-copy-kicker{padding:6px 13px 6px 11px;border:1px solid rgba(2,245,161,.28);background:rgba(2,245,161,.08);border-radius:999px;font-size:12.5px}
+.hero .btn{min-height:46px;padding:11px 22px}
+.hero .btn-white{box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.stat-card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:none}
+.stat-num{font-size:1.9rem;line-height:1.15}
+.stat-label{color:rgba(255,255,255,.7)}
+@keyframes heroRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-inner>div:first-child>*{animation:heroRise .6s var(--ease) both}
+.hero-inner>div:first-child>*:nth-child(2){animation-delay:.07s}
+.hero-inner>div:first-child>*:nth-child(3){animation-delay:.14s}
+.hero-inner>div:first-child>*:nth-child(4){animation-delay:.21s}
+.hero-data{animation:heroRise .7s .25s var(--ease) both}
+
+/* --- feature cards: informational, so they should not look clickable --- */
+.feat-card{animation:none;border-radius:var(--r-lg);padding:1.75rem}
+.feat-card:hover{transform:none;background:var(--surf);border-color:var(--border)}
+[data-theme="dark"] .feat-card:hover{background:var(--surf3);border-color:var(--border2)}
+.feat-icon{width:46px;height:46px;border-radius:12px;color:var(--gt);box-shadow:inset 0 0 0 1px var(--g100)}
+.feat-icon svg{width:22px !important;height:22px !important;margin:0 !important;vertical-align:0 !important}
+.feat-title{font-size:1.02rem;margin-bottom:6px}
+.feat-desc{font-size:13.5px}
+
+/* --- closing band + footer (footer used var(--g800) which turns neon green in dark mode) --- */
+.cta-band{position:relative;overflow:hidden;text-align:center;color:#fff;padding:4.5rem 1.5rem;border-top:1px solid rgba(2,245,161,.5);
+  background:radial-gradient(70% 130% at 50% 140%,rgba(2,245,161,.18),transparent 70%),linear-gradient(135deg,#0a2535 0%,#07191E 100%)}
+.cta-title{font-family:var(--fd);font-size:clamp(1.6rem,3vw,2.1rem);font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}
+.cta-sub{color:rgba(255,255,255,.75);margin:0 auto 1.75rem;max-width:460px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.site-footer{background:#051317;color:rgba(255,255,255,.62);text-align:center;font-size:13px;padding:2rem 1.5rem calc(2rem + env(safe-area-inset-bottom,0px))}
+.foot-brand{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:1rem;font-family:var(--fd);font-weight:700;font-size:1.1rem;color:#fff}
+.foot-brand .logo{width:28px;height:28px;border-radius:8px}
+.foot-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.site-footer a{color:rgba(255,255,255,.82);text-decoration:none;cursor:pointer;padding:6px 2px;border-radius:4px}
+@media(hover:hover) and (pointer:fine){.site-footer a:hover{color:var(--g400);text-decoration:underline}}
+.site-footer :focus-visible{outline-color:var(--g400)}
+
+/* --- marketplace cards --- */
+.prod-grid{gap:1.35rem}
+.prod-card{display:flex;flex-direction:column;border-radius:var(--r-lg)}
+.prod-card:active{transform:scale(.985)}
+@media(hover:hover) and (pointer:fine){.prod-card:hover{box-shadow:var(--shadow-md);border-color:var(--border2)}}
+.prod-img{height:auto;aspect-ratio:4/3}
+.prod-card.skel .prod-img.skel-block{height:auto}
+.prod-body{display:flex;flex-direction:column;flex:1;padding:1rem 1.1rem 1.1rem}
+.prod-name{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35;font-size:1.02rem}
+.prod-price{font-size:1.25rem}
+.prod-loc{margin-bottom:10px}
+.add-to-cart-btn{margin-top:auto;min-height:40px}
+.filter-bar input,.filter-bar select{min-height:40px}
+.empty-state-rich .esr-icon{color:var(--gt)}
+
+/* --- dashboards --- */
+.sb-link{min-height:40px}
+.sb-link.active{font-weight:600}
+.met{border-radius:var(--r-lg)}
+.met-val{line-height:1.2}
+.tbl-wrap{border-radius:var(--r-lg)}
+.dash-layout{min-height:calc(100vh - 66px - env(safe-area-inset-top,0px));min-height:calc(100dvh - 66px - env(safe-area-inset-top,0px))}
+.sidebar{height:calc(100vh - 66px - env(safe-area-inset-top,0px));height:calc(100dvh - 66px - env(safe-area-inset-top,0px))}
+
+/* --- farmer profile hero: was still the old forest green --- */
+.farmer-hero{background:radial-gradient(60% 90% at 82% 0%,rgba(2,245,161,.16),transparent 65%),linear-gradient(150deg,#07191E 0%,#0f3d4a 100%)}
+.farmer-profile-card{border-radius:var(--r-lg)}
+
+/* --- modals, forms, auth --- */
+.modal-bg{-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.modal{border-radius:var(--r-lg)}
+.fc{border-radius:12px;padding:11px 14px}
+.fc:focus,.filter-bar input:focus,.filter-bar select:focus,.cart-addr:focus{box-shadow:0 0 0 3px rgba(2,245,161,.28);border-color:var(--g400)}
+.auth-wrap{min-height:calc(100vh - 66px - env(safe-area-inset-top,0px));min-height:calc(100dvh - 66px - env(safe-area-inset-top,0px));
+  background:radial-gradient(60% 50% at 50% 0%,rgba(2,245,161,.10),transparent 70%),var(--surf2)}
+.auth-card{border-radius:var(--r-lg);padding:2.5rem 2.25rem;box-shadow:var(--shadow-md)}
+.auth-title{font-size:1.65rem;letter-spacing:-.01em}
+.role-toggle{border-radius:12px}
+.role-btn{min-height:38px;border-radius:9px}
+
+/* --- cart drawer --- */
+.cart-drawer{height:100vh;height:100dvh}
+.cart-overlay{-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.cart-foot{padding-bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))}
+.cart-checkout-btn{min-height:48px;border-radius:12px}
+
+/* --- toasts, banners --- */
+.toast-area{pointer-events:none}
+.toast{pointer-events:auto}
+#installBanner,#iosInstallBanner{bottom:calc(1rem + env(safe-area-inset-bottom,0px)) !important}
+
+/* --- mobile --- */
+.mbn-icon{display:flex;align-items:center;justify-content:center;height:24px}
+.mbn-icon svg{width:22px !important;height:22px !important;margin:0 !important;vertical-align:0 !important}
+.mbn{min-height:56px;justify-content:center;font-size:11px}
+.mob-menu a{display:flex;align-items:center;gap:12px;padding:15px 14px}
+.mob-menu a svg{width:20px !important;height:20px !important;margin:0 !important;vertical-align:0 !important;flex-shrink:0;color:var(--light)}
+.mob-menu{padding-bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))}
+@media(max-width:780px){
+  .hero{min-height:auto;padding:3rem 1.25rem 3.25rem}
+  .hero::before{background-position:center bottom -40px;background-size:1100px auto;opacity:.7;-webkit-mask-image:linear-gradient(180deg,transparent 25%,#000 90%);mask-image:linear-gradient(180deg,transparent 25%,#000 90%)}
+  .hero h1{font-size:2.3rem}
+  .stat-num{font-size:1.6rem}
+  .section{padding-top:3.25rem;padding-bottom:3.25rem}
+  .prod-grid{gap:.85rem}
+  .prod-body{padding:.8rem .85rem .9rem}
+  .prod-price{font-size:1.1rem}
+  .feat-card{padding:1.35rem}
+  .auth-card{padding:2rem 1.5rem}
+  .cta-band{padding:3.5rem 1.25rem}
+  .mob-fab{bottom:calc(5rem + env(safe-area-inset-bottom,0px))}
+  .modal{border-radius:var(--r-lg) var(--r-lg) 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .toast-area{left:1rem;right:1rem;bottom:auto;top:calc(env(safe-area-inset-top,0px) + 72px);align-items:stretch}
+  .toast{max-width:none;animation-name:toastInTop}
+  @keyframes toastInTop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+}
+@media(max-width:520px){
+  .hero-btns .btn{flex:1 1 100%}
+}
 </style>
 </head>
 <body>
@@ -682,10 +885,10 @@ tr:hover td{background:var(--surf3) !important}
   <div class="brand" onclick="go('home')">
     <div class="logo">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="white" opacity="0.9"/>
-        <path d="M11 20V10" stroke="#217a43" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M11 14C11 14 8 11 5.5 11" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/>
+        <path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </div>
     <span class="brandname">AgroLink</span>
@@ -819,20 +1022,20 @@ tr:hover td{background:var(--surf3) !important}
       <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:-2px;margin-right:3px;flex-shrink:0"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="feat-title">Secured</div><div class="feat-desc">Real authentication, role-based access, HTTPS encryption throughout.</div></div>
     </div>
   </div>
-  <div style="background:linear-gradient(135deg,#0a2535 0%,#07191E 100%);border-top:2px solid var(--g400);padding:3rem 2rem;text-align:center;color:#fff;position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(0,212,138,.08) 0%,transparent 70%);pointer-events:none"></div>
-    <div style="font-family:var(--fd);font-size:1.75rem;font-weight:700;margin-bottom:.5rem">Ready to trade smarter?</div>
-    <div style="color:rgba(255,255,255,.75);margin-bottom:1.5rem">Join thousands of farmers and buyers across Nigeria</div>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-white" onclick="go('register')">Join as Farmer</button>
+  <div class="cta-band">
+    <div class="cta-title">Ready to trade smarter?</div>
+    <div class="cta-sub">Join thousands of farmers and buyers across Nigeria</div>
+    <div class="cta-btns">
+      <button class="btn btn-primary" onclick="go('register')">Join as Farmer</button>
       <button class="btn btn-outline-w" onclick="go('register')">Join as Buyer</button>
     </div>
   </div>
-  <div style="background:var(--g800);padding:1.5rem 2rem;text-align:center;color:rgba(255,255,255,.6);font-size:12px">
-    <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:.5rem">
-      <a onclick="go('privacy')" style="color:rgba(255,255,255,.75);text-decoration:underline;cursor:pointer">Privacy Policy</a>
-      <a onclick="go('terms')" style="color:rgba(255,255,255,.75);text-decoration:underline;cursor:pointer">Terms of Service</a>
-      <a onclick="go('about');act('na')" style="color:rgba(255,255,255,.75);text-decoration:underline;cursor:pointer">About</a>
+  <div class="site-footer">
+    <div class="foot-brand"><div class="logo"><svg width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/><path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/><path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/><path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>AgroLink</span></div>
+    <div class="foot-links">
+      <a role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="go('privacy')">Privacy Policy</a>
+      <a role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="go('terms')">Terms of Service</a>
+      <a role="link" tabindex="0" onkeydown="if(event.key==='Enter')this.click()" onclick="go('about');act('na')">About</a>
     </div>
     <div>© 2026 AgroLink. All rights reserved.</div>
   </div>
@@ -1241,14 +1444,14 @@ tr:hover td{background:var(--surf3) !important}
       </div>
     </div>
   </div>
-  <div style="background:var(--g800);padding:2rem;text-align:center;color:rgba(255,255,255,.7);font-size:13px;margin-top:2rem">
+  <div style="background:#051317;padding:2rem;text-align:center;color:rgba(255,255,255,.7);font-size:13px;margin-top:2rem">
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:.5rem">
     <div style="width:28px;height:28px;border-radius:6px;background:var(--g400);display:flex;align-items:center;justify-content:center">
       <svg width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="white" opacity="0.9"/>
-        <path d="M11 20V10" stroke="#217a43" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M11 14C11 14 8 11 5.5 11" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/>
+        <path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </div>
     <span style="font-family:var(--fd);font-size:1.1rem;font-weight:700;color:#fff">AgroLink</span>
@@ -1399,10 +1602,10 @@ tr:hover td{background:var(--surf3) !important}
     <div class="auth-card">
       <div style="text-align:center;margin-bottom:1rem"><div class="logo" style="width:50px;height:50px;font-size:24px;margin:0 auto .5rem">
         <svg width="28" height="28" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="white" opacity="0.9"/>
-          <path d="M11 20V10" stroke="#217a43" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M11 14C11 14 8 11 5.5 11" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/>
+          <path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div></div>
       <div class="auth-title">Welcome back</div>
@@ -1506,10 +1709,10 @@ tr:hover td{background:var(--surf3) !important}
     <div class="auth-card">
       <div style="text-align:center;margin-bottom:1rem"><div class="logo" style="width:50px;height:50px;font-size:24px;margin:0 auto .5rem">
         <svg width="28" height="28" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="white" opacity="0.9"/>
-          <path d="M11 20V10" stroke="#217a43" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M11 14C11 14 8 11 5.5 11" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/>
+          <path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div></div>
       <div class="auth-title">Reset Password</div>
@@ -1529,10 +1732,10 @@ tr:hover td{background:var(--surf3) !important}
     <div class="auth-card">
       <div style="text-align:center;margin-bottom:1rem"><div class="logo" style="width:50px;height:50px;font-size:24px;margin:0 auto .5rem">
         <svg width="28" height="28" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="white" opacity="0.9"/>
-          <path d="M11 20V10" stroke="#217a43" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M11 14C11 14 8 11 5.5 11" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#217a43" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 2C11 2 4 6 4 13C4 17.4 7.1 20 11 20C14.9 20 18 17.4 18 13C18 6 11 2 11 2Z" fill="#07191E" opacity="0.92"/>
+          <path d="M11 20V10" stroke="#02F5A1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M11 14C11 14 8 11 5.5 11" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M11 11.5C11 11.5 13.5 9 16 9.5" stroke="#02F5A1" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div></div>
       <div class="auth-title">Set a New Password</div>
